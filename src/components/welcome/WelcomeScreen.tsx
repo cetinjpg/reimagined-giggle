@@ -145,11 +145,11 @@ export function WelcomeScreen() {
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                <span className="text-white">
                   TÖH
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
                   Türkiye Özel Harekat
                 </span>
               </h1>
@@ -165,7 +165,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-2xl shadow-red-500/25"
+                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-2xl shadow-red-500/25"
                 >
                   Hemen Başvur
                 </Button>
@@ -173,7 +173,7 @@ export function WelcomeScreen() {
                   variant="outline"
                   size="lg"
                   icon={Play}
-                  className="border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400/50"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500"
                 >
                   Tanıtım Videosu
                 </Button>
@@ -246,7 +246,7 @@ export function WelcomeScreen() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-2">{stat.value}</h3>
@@ -266,7 +266,7 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className="text-white">
                 Neden TÖH?
               </span>
             </h2>
@@ -284,7 +284,7 @@ export function WelcomeScreen() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="p-8 h-full bg-gray-900/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
@@ -305,7 +305,7 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
                 Liderlik Kadromuz
               </span>
             </h2>
@@ -317,7 +317,7 @@ export function WelcomeScreen() {
           {/* Kurucular */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Crown className="w-6 h-6 mr-2 text-red-400" />
+              <Crown className="w-6 h-6 mr-2 text-red-500" />
               Kurucular
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -335,14 +335,14 @@ export function WelcomeScreen() {
                         alt={founder.name}
                         className="w-20 h-20 rounded-full mx-auto border-4 border-red-500/40 group-hover:border-red-400/60 transition-all duration-300 shadow-lg"
                       />
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-400 to-red-500 rounded-full flex items-center justify-center shadow-lg">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                         <Crown className="w-4 h-4 text-white" />
                       </div>
                     </div>
                     <h4 className="text-lg font-bold text-white mb-2">{founder.name}</h4>
-                    <p className="text-red-400 font-medium mb-2">{founder.position}</p>
+                    <p className="text-red-500 font-medium mb-2">{founder.position}</p>
                     <div className="flex justify-center">
-                      <span className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-300 text-sm font-medium">
+                      <span className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-medium">
                         Rank {founder.rank}
                       </span>
                     </div>
@@ -355,7 +355,7 @@ export function WelcomeScreen() {
           {/* Yönetim Kadrosu */}
           <div>
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Star className="w-6 h-6 mr-2 text-red-400" />
+              <Star className="w-6 h-6 mr-2 text-red-500" />
               Yönetim Kadrosu
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -378,8 +378,8 @@ export function WelcomeScreen() {
                         <p className="text-gray-400 mb-2">{member.position}</p>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           member.category === 'discord' 
-                            ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
-                            : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
+                            ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
+                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
                         }`}>
                           {member.category === 'discord' ? 'Discord Yetkilisi' : 'Koordinatör'}
                         </span>
@@ -402,7 +402,7 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
                 Başarılarımız
               </span>
             </h2>
@@ -418,11 +418,11 @@ export function WelcomeScreen() {
               transition={{ delay: 0.1 }}
             >
               <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Trophy className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">En İyi Şirket</h3>
-                <p className="text-red-300 mb-4">2023 Habbo Türkiye Ödülleri</p>
+                <p className="text-red-400 mb-4">2023 Habbo Türkiye Ödülleri</p>
                 <p className="text-gray-400">Habbo Türkiye'nin en prestijli şirketi ödülünü kazandık</p>
               </Card>
             </motion.div>
@@ -433,11 +433,11 @@ export function WelcomeScreen() {
               transition={{ delay: 0.2 }}
             >
               <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Güvenlik Lideri</h3>
-                <p className="text-orange-300 mb-4">500+ Başarılı Operasyon</p>
+                <p className="text-red-400 mb-4">500+ Başarılı Operasyon</p>
                 <p className="text-gray-400">Habbo güvenliğinde öncü rol oynuyoruz</p>
               </Card>
             </motion.div>
@@ -448,11 +448,11 @@ export function WelcomeScreen() {
               transition={{ delay: 0.3 }}
             >
              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 text-center backdrop-blur-sm">
-               <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Büyük Topluluk</h3>
-               <p className="text-gray-300 mb-4">300+ Discord Üyesi</p>
+               <p className="text-red-400 mb-4">300+ Discord Üyesi</p>
                <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
               </Card>
             </motion.div>
@@ -468,12 +468,12 @@ export function WelcomeScreen() {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="bg-gradient-to-r from-gray-900/30 to-gray-800/30 border border-red-500/30 rounded-3xl p-12 backdrop-blur-sm">
-              <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+              <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
                 <Sword className="w-10 h-10 text-white" />
               </div>
               
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <span className="text-white">
                   TÖH Ailesine Katıl
                 </span>
               </h2>
@@ -488,7 +488,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-2xl shadow-red-500/25"
+                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-2xl shadow-red-500/25"
                 >
                   Şimdi Başvur
                 </Button>
@@ -496,15 +496,15 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('login')}
                   variant="outline"
                   size="lg"
-                  icon={LogIn}
-                  className="border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400/50"
+                  className="text-white hover:bg-gray-700 border border-gray-600"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500"
                 >
                   Giriş Yap
                 </Button>
               </div>
             </div>
           </motion.div>
-        </div>
+                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-lg shadow-red-500/25"
       </section>
 
       {/* Footer */}
@@ -512,7 +512,7 @@ export function WelcomeScreen() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <div>

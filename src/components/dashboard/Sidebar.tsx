@@ -42,12 +42,12 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-700">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
             <Shield className="w-7 h-7 text-white" />
           </div>
           {!sidebarCollapsed && (
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
                 TÖH
               </h1>
               <p className="text-xs text-gray-400">Yönetim Sistemi</p>
@@ -72,14 +72,14 @@ export function Sidebar() {
             onClick={() => setCurrentPage(item.id)}
             className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
               currentPage === item.id
-                ? 'bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 text-red-300'
+                ? 'bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 text-red-400'
                 : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
             }`}
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.98 }}
           >
             <item.icon className={`w-5 h-5 ${
-              currentPage === item.id ? 'text-red-400' : 'text-gray-400 group-hover:text-white'
+              currentPage === item.id ? 'text-red-500' : 'text-gray-400 group-hover:text-white'
             }`} />
             {!sidebarCollapsed && (
               <span className="font-medium">{item.label}</span>
