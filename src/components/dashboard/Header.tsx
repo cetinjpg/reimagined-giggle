@@ -53,7 +53,6 @@ export function Header() {
               <p className="text-xs text-gray-400">{user?.rank || 'Stajyer'}</p>
             </div>
             
-            <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center">
             <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-white" />
             </div>
@@ -69,6 +68,4 @@ export function Header() {
       </div>
     </header>
   );
-}
-  )
 }
