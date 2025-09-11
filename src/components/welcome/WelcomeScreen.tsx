@@ -82,9 +82,9 @@ export function WelcomeScreen() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white overflow-hidden">
+    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -112,7 +112,7 @@ export function WelcomeScreen() {
                 onClick={() => openAuth('login')}
                 variant="ghost"
                 icon={LogIn}
-                className="text-gray-700 dark:text-white hover:bg-red-500/20 border border-red-500/30"
+                className="text-white hover:bg-red-500/20 border border-red-500/30"
               >
                 Giriş Yap
               </Button>
