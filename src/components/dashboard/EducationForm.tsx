@@ -1,169 +1,189 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
-import { GraduationCap, Plus, Search, User, Calendar, Clock } from 'lucide-react';
+import { GraduationCap, Search, User, Calendar, CheckCircle, X, Copy } from 'lucide-react';
 import { tohAPI, discordAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
+interface EducationLog {
+  id: string;
+  studentName: string;
+  instructorName: string;
+  date: string;
+  attended: boolean;
+  timestamp: string;
+}
+
 export function EducationForm() {
-  const [instructorName, setInstructorName] = useState('');
-  const [instructorInfo, setInstructorInfo] = useState<any>(null);
-  const [formData, setFormData] = useState({
-    title: '',
-    participants: '',
-    date: '',
-    time: '',
-    duration: '60',
-    description: ''
-  });
+  const [userName, setUserName] = useState('');
+  const [userInfo, setUserInfo] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [creating, setCreating] = useState(false);
+  const [showEducationForm, setShowEducationForm] = useState(false);
+  const [educationLogs, setEducationLogs] = useState<EducationLog[]>([]);
+  
+  const [educationData, setEducationData] = useState({
+    instructorName: '',
+    date: new Date().toISOString().split('T')[0],
+    attended: true
+  });
 
-  const trainingTemplates = [
-    'Stajyer Eğitimi',
-    'Yüksek Rütbe Eğitimi'
-  ];
-
-  const handleInstructorSearch = async () => {
-    if (!instructorName.trim()) {
-      toast.error('Lütfen eğitmen adı girin!');
+  const handleUserSearch = async () => {
+    if (!userName.trim()) {
+      toast.error('Lütfen kullanıcı adı girin!');
       return;
     }
 
     setLoading(true);
     try {
-      const userData = await tohAPI.getUserInfo(instructorName.trim());
-      setInstructorInfo(userData);
-      toast.success('Eğitmen bilgileri yüklendi!');
+      const userData = await tohAPI.getUserInfo(userName.trim());
+      
+      // Eğitim durumunu kontrol et (mock data)
+      const hasEducation = Math.random() > 0.5; // %50 şans ile eğitimi var
+      
+      setUserInfo({
+        ...userData,
+        hasEducation: hasEducation
+      });
+      
+      setShowEducationForm(false);
+      toast.success('Kullanıcı bilgileri yüklendi!');
     } catch (error: any) {
       toast.error(error.message);
-      setInstructorInfo(null);
+      setUserInfo(null);
     }
     setLoading(false);
   };
 
-  const handleCreateTraining = async () => {
-    if (!instructorInfo || !formData.title || !formData.participants || !formData.date || !formData.time) {
-      toast.error('Lütfen tüm zorunlu alanları doldurun!');
+  const handleEducationSubmit = async () => {
+    if (!userInfo || !educationData.instructorName.trim()) {
+      toast.error('Lütfen tüm alanları doldurun!');
       return;
     }
 
-    setCreating(true);
+    setLoading(true);
     try {
-      const participants = formData.participants
-        .split('\n')
-        .map(p => p.trim())
-        .filter(p => p);
-
-      const trainingDateTime = new Date(`${formData.date}T${formData.time}`);
-
       await discordAPI.sendLog({
-        title: '🎓 Eğitim Planlandı',
-        description: `Yeni eğitim planlandı: ${formData.title}`,
-        color: 0x0099ff,
+        title: '🎓 Eğitim Kaydı',
+        description: `${userInfo.username} için eğitim kaydı oluşturuldu`,
+        color: 0x6b7280,
         fields: [
-          { name: 'Eğitmen', value: instructorInfo.username, inline: true },
-          { name: 'Katılımcı Sayısı', value: participants.length.toString(), inline: true },
-          { name: 'Tarih', value: trainingDateTime.toLocaleDateString('tr-TR'), inline: true },
-          { name: 'Saat', value: trainingDateTime.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }), inline: true },
-          { name: 'Süre', value: `${formData.duration} dakika`, inline: true },
-          { name: 'Açıklama', value: formData.description || 'Belirtilmemiş', inline: false }
-        ]
+          { name: 'Eğitim Alan', value: userInfo.username, inline: true },
+          { name: 'Eğitim Veren', value: educationData.instructorName, inline: true },
+          { name: 'Tarih', value: new Date(educationData.date).toLocaleDateString('tr-TR'), inline: true },
+          { name: 'Katılım Durumu', value: educationData.attended ? '✅ Katıldı' : '❌ Katılmadı', inline: true }
+        ],
+        username: userInfo.username
       });
 
+      // Log'a ekle
+      const newLog: EducationLog = {
+        id: Date.now().toString(),
+        studentName: userInfo.username,
+        instructorName: educationData.instructorName,
+        date: educationData.date,
+        attended: educationData.attended,
+        timestamp: new Date().toLocaleString('tr-TR')
+      };
+      setEducationLogs(prev => [newLog, ...prev]);
+
+      // Kullanıcının eğitim durumunu güncelle
+      setUserInfo(prev => ({ ...prev, hasEducation: true }));
+      
+      toast.success('Eğitim kaydı başarıyla oluşturuldu!');
+      setShowEducationForm(false);
+      
       // Form temizle
-      setFormData({
-        title: '',
-        participants: '',
-        date: '',
-        time: '',
-        duration: '60',
-        description: ''
+      setEducationData({
+        instructorName: '',
+        date: new Date().toISOString().split('T')[0],
+        attended: true
       });
-
-      toast.success('Eğitim başarıyla planlandı!');
     } catch (error: any) {
-      toast.error('Eğitim planlama sırasında hata oluştu!');
+      toast.error('Eğitim kaydı oluşturma sırasında hata oluştu!');
     }
-    setCreating(false);
+    setLoading(false);
+  };
+
+  const copyEducationLog = (log: EducationLog) => {
+    const logText = `${log.studentName} - Eğitmen: ${log.instructorName} - Tarih: ${new Date(log.date).toLocaleDateString('tr-TR')} - ${log.attended ? 'Katıldı' : 'Katılmadı'}`;
+    navigator.clipboard.writeText(logText);
+    toast.success('Log panoya kopyalandı!');
   };
 
   return (
     <div className="space-y-6">
       <Card className="p-8 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-          <GraduationCap className="w-7 h-7 mr-3 text-primary-500" />
+        <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
+          <GraduationCap className="w-7 h-7 mr-3 text-gray-500" />
           Eğitim Yönetimi
         </h2>
 
-        {/* Instructor Search */}
+        {/* User Search */}
         <div className="mb-8">
           <div className="flex gap-4">
             <div className="flex-1">
               <Input
-                label="Eğitmen Adı"
-                placeholder="Eğitimi verecek kişinin adını girin"
-                value={instructorName}
-                onChange={(e) => setInstructorName(e.target.value)}
+                label="Kullanıcı Adı"
+                placeholder="Eğitim durumu kontrol edilecek kullanıcının adını girin"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 icon={User}
                 fullWidth
               />
             </div>
             <div className="flex items-end">
               <Button
-                onClick={handleInstructorSearch}
+                onClick={handleUserSearch}
                 loading={loading}
                 disabled={loading}
                 icon={Search}
-                className="px-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+                className="px-8 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
               >
-                Eğitmen Ara
+                Kullanıcı Ara
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Instructor Information */}
-        {instructorInfo && (
+        {/* User Information */}
+        {userInfo && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <Card className="p-6 bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-700/50">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                <User className="w-5 h-5 mr-2 text-purple-500" />
-                Eğitmen Bilgileri
+            <Card className="p-6 bg-gradient-to-r from-gray-900/20 to-gray-800/20 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                <User className="w-5 h-5 mr-2 text-gray-500" />
+                Kullanıcı Bilgileri
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Eğitmen</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">
-                    {instructorInfo.username || instructorName}
+                  <p className="text-sm font-medium text-gray-400">Kullanıcı Adı</p>
+                  <p className="text-lg font-bold text-white">
+                    {userInfo.username || userName}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 flex items-center">
-                    <Award className="w-4 h-4 mr-1" />
-                    Rütbe
-                  </p>
-                  <p className="text-lg font-bold text-red-400">
-                    {instructorInfo.currentRank || 'Stajyer'}
+                  <p className="text-sm font-medium text-gray-400">Mevcut Rütbe</p>
+                  <p className="text-lg font-bold text-gray-400">
+                    {userInfo.currentRank || 'Stajyer'}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 flex items-center">
+                  <p className="text-sm font-medium text-gray-400 flex items-center">
                     <GraduationCap className="w-4 h-4 mr-1" />
-                    Eğitim Yetkisi
+                    Eğitim Durumu
                   </p>
-                  <p className="text-lg font-bold text-orange-400">
-                    {instructorInfo.canTeach ? 'Var' : 'Yok'}
+                  <p className={`text-lg font-bold ${
+                    userInfo.hasEducation ? 'text-green-400' : 'text-red-400'
+                  }`}>
+                    {userInfo.hasEducation ? 'Eğitimi Var' : 'Eğitimi Yok'}
                   </p>
                 </div>
               </div>
@@ -171,110 +191,167 @@ export function EducationForm() {
           </motion.div>
         )}
 
-        {/* Training Form */}
-        {instructorInfo && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Eğitim Başlığı
-                  </label>
-                  <select
-                    value={formData.title}
-                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
-                  >
-                    <option value="">Eğitim türü seçin</option>
-                    {trainingTemplates.map(template => (
-                      <option key={template} value={template}>{template}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="Tarih"
-                    type="date"
-                    value={formData.date}
-                    onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
-                    icon={Calendar}
-                    fullWidth
-                  />
-
-                  <Input
-                    label="Saat"
-                    type="time"
-                    value={formData.time}
-                    onChange={(e) => setFormData(prev => ({ ...prev, time: e.target.value }))}
-                    icon={Clock}
-                    fullWidth
-                  />
-                </div>
-
-                <Input
-                  label="Süre (Dakika)"
-                  type="number"
-                  placeholder="60"
-                  value={formData.duration}
-                  onChange={(e) => setFormData(prev => ({ ...prev, duration: e.target.value }))}
-                  fullWidth
-                />
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Katılımcılar
-                  </label>
-                  <textarea
-                    className="w-full h-32 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
-                    placeholder="Her satıra bir katılımcı adı yazın..."
-                    value={formData.participants}
-                    onChange={(e) => setFormData(prev => ({ ...prev, participants: e.target.value }))}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Açıklama (Opsiyonel)
-                  </label>
-                  <textarea
-                    className="w-full h-24 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
-                    placeholder="Eğitim hakkında ek bilgiler..."
-                    value={formData.description}
-                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Actions */}
-        {instructorInfo && (
+        {/* Education Action */}
+        {userInfo && !userInfo.hasEducation && !showEducationForm && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Button
-              onClick={handleCreateTraining}
+              onClick={() => setShowEducationForm(true)}
               fullWidth
               size="lg"
-              loading={creating}
-              disabled={creating}
-              icon={Plus}
-              className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
+              icon={GraduationCap}
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
             >
-              Eğitim Planla
+              Eğitim Ver
             </Button>
           </motion.div>
         )}
+
+        {/* Education Form */}
+        {showEducationForm && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <Card className="p-6 bg-gradient-to-r from-gray-800/20 to-gray-700/20 border border-gray-600/50">
+              <h4 className="text-lg font-semibold text-white mb-6">Eğitim Bilgileri</h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <Input
+                  label="Eğitim Veren"
+                  placeholder="Eğitimi veren kişinin adı"
+                  value={educationData.instructorName}
+                  onChange={(e) => setEducationData(prev => ({ ...prev, instructorName: e.target.value }))}
+                  icon={User}
+                  fullWidth
+                />
+
+                <Input
+                  label="Eğitim Tarihi"
+                  type="date"
+                  value={educationData.date}
+                  onChange={(e) => setEducationData(prev => ({ ...prev, date: e.target.value }))}
+                  icon={Calendar}
+                  fullWidth
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-300 mb-3">
+                  Discord'a Katıldı mı?
+                </label>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => setEducationData(prev => ({ ...prev, attended: true }))}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${
+                      educationData.attended
+                        ? 'bg-green-600/20 border-green-500/50 text-green-300'
+                        : 'bg-gray-800/50 border-gray-600/50 text-gray-400 hover:bg-gray-700/50'
+                    }`}
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Katıldı</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => setEducationData(prev => ({ ...prev, attended: false }))}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${
+                      !educationData.attended
+                        ? 'bg-red-600/20 border-red-500/50 text-red-300'
+                        : 'bg-gray-800/50 border-gray-600/50 text-gray-400 hover:bg-gray-700/50'
+                    }`}
+                  >
+                    <X className="w-4 h-4" />
+                    <span>Katılmadı</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <Button
+                  onClick={handleEducationSubmit}
+                  loading={loading}
+                  disabled={loading}
+                  icon={CheckCircle}
+                  className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                >
+                  Eğitim Kaydını Oluştur
+                </Button>
+                <Button
+                  onClick={() => setShowEducationForm(false)}
+                  variant="outline"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  İptal
+                </Button>
+              </div>
+            </Card>
+          </motion.div>
+        )}
+
+        {/* Education Status for users who have education */}
+        {userInfo && userInfo.hasEducation && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-6 bg-green-900/20 rounded-lg border border-green-700/50"
+          >
+            <div className="flex items-center">
+              <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
+              <div>
+                <h4 className="text-lg font-semibold text-green-200">Eğitim Tamamlandı</h4>
+                <p className="text-green-300">Bu kullanıcı eğitimini başarıyla tamamlamıştır.</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </Card>
+
+      {/* Education Logs */}
+      {educationLogs.length > 0 && (
+        <Card className="p-6 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
+          <h3 className="text-lg font-semibold text-white mb-4">
+            Eğitim Logları ({educationLogs.length})
+          </h3>
+          <div className="space-y-3 max-h-96 overflow-y-auto">
+            {educationLogs.map((log) => (
+              <motion.div
+                key={log.id}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="p-4 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium text-white">
+                      {log.studentName} - Eğitmen: {log.instructorName}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      Tarih: {new Date(log.date).toLocaleDateString('tr-TR')} - 
+                      <span className={log.attended ? 'text-green-400' : 'text-red-400'}>
+                        {log.attended ? ' Katıldı' : ' Katılmadı'}
+                      </span>
+                    </p>
+                    <p className="text-xs text-gray-500">{log.timestamp}</p>
+                  </div>
+                  <Button
+                    onClick={() => copyEducationLog(log)}
+                    variant="outline"
+                    size="sm"
+                    icon={Copy}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  >
+                    Kopyala
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Card>
+      )}
     </div>
   );
 }
