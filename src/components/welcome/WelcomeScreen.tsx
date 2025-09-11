@@ -496,7 +496,6 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('login')}
                   variant="outline"
                   size="lg"
-                  className="text-white hover:bg-gray-700 border border-gray-600"
                   className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500"
                 >
                   Giriş Yap
@@ -504,7 +503,7 @@ export function WelcomeScreen() {
               </div>
             </div>
           </motion.div>
-                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-lg shadow-red-500/25"
+        </div>
       </section>
 
       {/* Footer */}
