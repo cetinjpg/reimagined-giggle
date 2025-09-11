@@ -35,7 +35,6 @@ export function Sidebar() {
     <motion.div
       initial={{ x: -300 }}
       animate={{ x: 0 }}
-      className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-40 transition-all duration-300 ${
       className={`fixed left-0 top-0 h-full bg-gray-900 border-r border-gray-700 z-40 transition-all duration-300 ${
         sidebarCollapsed ? 'w-20' : 'w-80'
       }`}
@@ -51,7 +50,6 @@ export function Sidebar() {
               <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                 TÖH
               </h1>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Yönetim Sistemi</p>
               <p className="text-xs text-gray-400">Yönetim Sistemi</p>
             </div>
           )}
