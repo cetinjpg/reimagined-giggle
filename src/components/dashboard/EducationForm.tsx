@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -92,7 +93,7 @@ export function EducationForm() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+      <Card className="p-8 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
           <GraduationCap className="w-7 h-7 mr-3 text-primary-500" />
           Eğitim Yönetimi
@@ -117,7 +118,7 @@ export function EducationForm() {
                 loading={loading}
                 disabled={loading}
                 icon={Search}
-                className="px-8"
+                className="px-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
               >
                 Eğitmen Ara
               </Button>
@@ -132,7 +133,7 @@ export function EducationForm() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <Card className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border border-purple-200 dark:border-purple-700/50">
+            <Card className="p-6 bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-700/50">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                 <User className="w-5 h-5 mr-2 text-purple-500" />
                 Eğitmen Bilgileri
@@ -151,7 +152,7 @@ export function EducationForm() {
                     <Award className="w-4 h-4 mr-1" />
                     Rütbe
                   </p>
-                  <p className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                  <p className="text-lg font-bold text-red-400">
                     {instructorInfo.currentRank || 'Stajyer'}
                   </p>
                 </div>
@@ -161,7 +162,7 @@ export function EducationForm() {
                     <GraduationCap className="w-4 h-4 mr-1" />
                     Eğitim Yetkisi
                   </p>
-                  <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                  <p className="text-lg font-bold text-orange-400">
                     {instructorInfo.canTeach ? 'Var' : 'Yok'}
                   </p>
                 </div>
@@ -186,7 +187,7 @@ export function EducationForm() {
                   <select
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
                   >
                     <option value="">Eğitim türü seçin</option>
                     {trainingTemplates.map(template => (
@@ -231,7 +232,7 @@ export function EducationForm() {
                     Katılımcılar
                   </label>
                   <textarea
-                    className="w-full h-32 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2 resize-none"
+                    className="w-full h-32 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
                     placeholder="Her satıra bir katılımcı adı yazın..."
                     value={formData.participants}
                     onChange={(e) => setFormData(prev => ({ ...prev, participants: e.target.value }))}
@@ -243,7 +244,7 @@ export function EducationForm() {
                     Açıklama (Opsiyonel)
                   </label>
                   <textarea
-                    className="w-full h-24 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2 resize-none"
+                    className="w-full h-24 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
                     placeholder="Eğitim hakkında ek bilgiler..."
                     value={formData.description}
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
@@ -267,6 +268,7 @@ export function EducationForm() {
               loading={creating}
               disabled={creating}
               icon={Plus}
+              className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
             >
               Eğitim Planla
             </Button>

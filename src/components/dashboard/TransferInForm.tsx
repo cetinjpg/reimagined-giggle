@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -129,7 +130,7 @@ export function TransferInForm() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
+      <Card className="p-6 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
           <UserPlus className="w-6 h-6 mr-2 text-primary-500" />
           Transfer Gelen Yönetimi
@@ -170,7 +171,7 @@ export function TransferInForm() {
               <select
                 value={formData.assignedBadge}
                 onChange={(e) => setFormData(prev => ({ ...prev, assignedBadge: e.target.value, assignedRank: '' }))}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2"
+                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
               >
                 <option value="">Rozet seçin</option>
                 {Object.entries(badgeNames).map(([key, name]) => (
@@ -187,7 +188,7 @@ export function TransferInForm() {
                 value={formData.assignedRank}
                 onChange={(e) => setFormData(prev => ({ ...prev, assignedRank: e.target.value }))}
                 disabled={!formData.assignedBadge}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2 disabled:opacity-50"
+                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 disabled:opacity-50"
               >
                 <option value="">Rütbe seçin</option>
                 {formData.assignedBadge && ranks[formData.assignedBadge as keyof typeof ranks]?.map((rank) => (
@@ -201,7 +202,7 @@ export function TransferInForm() {
                 Notlar (Opsiyonel)
               </label>
               <textarea
-                className="w-full h-24 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2 resize-none"
+                className="w-full h-24 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
                 placeholder="Transfer hakkında ek bilgiler..."
                 value={formData.notes}
                 onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
@@ -217,13 +218,14 @@ export function TransferInForm() {
           loading={loading}
           disabled={loading}
           icon={UserPlus}
+          className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
         >
           Transfer Kaydı Oluştur
         </Button>
       </Card>
 
       {transfers.length > 0 && (
-        <Card className="p-6">
+        <Card className="p-6 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Transfer Kayıtları ({transfers.length})
@@ -232,6 +234,7 @@ export function TransferInForm() {
               onClick={copyTransferList}
               variant="outline"
               size="sm"
+              className="border-red-500/30 text-red-300 hover:bg-red-500/20"
               icon={Copy}
             >
               Onaylı Transferleri Kopyala
@@ -244,7 +247,7 @@ export function TransferInForm() {
                 key={transfer.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                className="p-4 bg-gray-800/50 rounded-lg"
               >
                 <div className="flex justify-between items-start mb-3">
                   <div>
@@ -280,6 +283,7 @@ export function TransferInForm() {
                         variant="outline"
                         size="sm"
                         icon={CheckCircle}
+                        className="border-green-500/30 text-green-300 hover:bg-green-500/20"
                         className="text-accent-600 hover:text-accent-700"
                       >
                         Onayla

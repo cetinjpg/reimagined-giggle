@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -132,7 +133,7 @@ export function TransferOutForm() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
+      <Card className="p-6 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
           <UserMinus className="w-6 h-6 mr-2 text-primary-500" />
           Şirketten Giden Yönetimi
@@ -171,7 +172,7 @@ export function TransferOutForm() {
               <select
                 value={formData.status}
                 onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as any }))}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2"
+                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
               >
                 <option value="voluntary">Gönüllü Ayrılık</option>
                 <option value="transferred">Transfer</option>
@@ -188,7 +189,7 @@ export function TransferOutForm() {
               <select
                 value={formData.departureReason}
                 onChange={(e) => setFormData(prev => ({ ...prev, departureReason: e.target.value }))}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2"
+                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
               >
                 <option value="">Sebep seçin</option>
                 {departureReasons.map(reason => (
@@ -212,7 +213,7 @@ export function TransferOutForm() {
                 Notlar (Opsiyonel)
               </label>
               <textarea
-                className="w-full h-24 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2 resize-none"
+                className="w-full h-24 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
                 placeholder="Ayrılık hakkında ek bilgiler..."
                 value={formData.notes}
                 onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
@@ -237,6 +238,7 @@ export function TransferOutForm() {
           loading={loading}
           disabled={loading}
           icon={UserMinus}
+          className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
           className="bg-red-500 hover:bg-red-600"
         >
           Ayrılık Kaydı Oluştur
@@ -244,7 +246,7 @@ export function TransferOutForm() {
       </Card>
 
       {departures.length > 0 && (
-        <Card className="p-6">
+        <Card className="p-6 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Ayrılık Kayıtları ({departures.length})
@@ -253,6 +255,7 @@ export function TransferOutForm() {
               onClick={copyDepartureList}
               variant="outline"
               size="sm"
+              className="border-red-500/30 text-red-300 hover:bg-red-500/20"
               icon={Copy}
             >
               Listeyi Kopyala
@@ -265,7 +268,7 @@ export function TransferOutForm() {
                 key={departure.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                className="p-4 bg-gray-800/50 rounded-lg"
               >
                 <div className="flex justify-between items-start mb-3">
                   <div>

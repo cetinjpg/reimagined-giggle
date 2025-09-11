@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -75,7 +76,7 @@ export function LicenseForm() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+      <Card className="p-8 bg-gray-900/80 backdrop-blur-sm border border-gray-800/50">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
           <CreditCard className="w-7 h-7 mr-3 text-primary-500" />
           Lisans Yönetimi
@@ -100,7 +101,7 @@ export function LicenseForm() {
                 loading={loading}
                 disabled={loading}
                 icon={Search}
-                className="px-8"
+                className="px-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
               >
                 Kullanıcı Ara
               </Button>
@@ -115,7 +116,7 @@ export function LicenseForm() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <Card className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-700/50">
+            <Card className="p-6 bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-700/50">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                 <User className="w-5 h-5 mr-2 text-green-500" />
                 Kullanıcı Bilgileri
@@ -134,7 +135,7 @@ export function LicenseForm() {
                     <Award className="w-4 h-4 mr-1" />
                     Mevcut Rütbe
                   </p>
-                  <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                  <p className="text-lg font-bold text-red-400">
                     {userInfo.currentRank || 'Stajyer'}
                   </p>
                 </div>
@@ -144,7 +145,7 @@ export function LicenseForm() {
                     <CreditCard className="w-4 h-4 mr-1" />
                     Mevcut Lisanslar
                   </p>
-                  <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                  <p className="text-lg font-bold text-orange-400">
                     {userInfo.licenses?.length || 0}
                   </p>
                 </div>
@@ -168,7 +169,7 @@ export function LicenseForm() {
                 <select
                   value={licenseType}
                   onChange={(e) => setLicenseType(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary-500 focus:ring-primary-500/20 focus:outline-none focus:ring-2"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2"
                 >
                   <option value="">Lisans türü seçin</option>
                   {licenseTypes.map(type => (
@@ -203,6 +204,7 @@ export function LicenseForm() {
               loading={issuing}
               disabled={issuing || !licenseType}
               icon={Plus}
+              className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
             >
               Lisans Ver
             </Button>
