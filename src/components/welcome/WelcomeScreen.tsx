@@ -82,9 +82,9 @@ export function WelcomeScreen() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-900 via-secondary-800 to-primary-900 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary-900/80 backdrop-blur-lg border-b border-primary-500/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-lg border-b border-gray-700/20">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -92,14 +92,15 @@ export function WelcomeScreen() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Shield className="w-7 h-7 text-white" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
                   TÖH
                 </h1>
-                <p className="text-xs text-secondary-400">Türkiye Özel Harekat</p>
+                <p className="text-xs text-gray-400">Türkiye Özel Harekat</p>
               </div>
             </motion.div>
 
@@ -112,14 +113,14 @@ export function WelcomeScreen() {
                 onClick={() => openAuth('login')}
                 variant="ghost"
                 icon={LogIn}
-                className="text-white hover:bg-primary-500/20 border border-primary-500/30"
+                className="text-white hover:bg-red-500/20 border border-red-500/30"
               >
                 Giriş Yap
               </Button>
               <Button
                 onClick={() => openAuth('register')}
                 icon={UserPlus}
-                className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg shadow-primary-500/25"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg shadow-red-500/25"
               >
                 TÖH'e Katıl
               </Button>
@@ -138,23 +139,23 @@ export function WelcomeScreen() {
               transition={{ duration: 0.8 }}
             >
               <div className="mb-6">
-                <span className="inline-flex items-center px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full text-primary-300 text-sm font-medium mb-4">
+                <span className="inline-flex items-center px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-300 text-sm font-medium mb-4">
                   <Crown className="w-4 h-4 mr-2" />
                   Habbo'nun En Prestijli Şirketi
                 </span>
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-white via-secondary-200 to-secondary-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                   TÖH
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
                   Türkiye Özel Harekat
                 </span>
               </h1>
               
-              <p className="text-xl text-secondary-300 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 8 yıllık deneyimimiz ile Habbo Türkiye'nin en köklü ve prestijli şirketi. 
                 Profesyonel ekibimiz, modern yönetim sistemimiz ve güçlü Discord entegrasyonumuz ile 
                 Habbo dünyasında fark yaratıyoruz.
@@ -165,7 +166,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-2xl shadow-primary-500/25"
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-2xl shadow-red-500/25"
                 >
                   Hemen Başvur
                 </Button>
@@ -173,7 +174,7 @@ export function WelcomeScreen() {
                   variant="outline"
                   size="lg"
                   icon={Play}
-                  className="border-primary-500/30 text-primary-300 hover:bg-primary-500/20 hover:border-primary-400/50"
+                  className="border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400/50"
                 >
                   Tanıtım Videosu
                 </Button>
@@ -200,15 +201,15 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
-                className="absolute -bottom-6 -left-6 bg-secondary-900/80 backdrop-blur-lg rounded-2xl p-6 border border-primary-500/20"
+                className="absolute -bottom-6 -left-6 bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/20"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-white">150+</p>
-                    <p className="text-sm text-secondary-400">Aktif Üye</p>
+                    <p className="text-sm text-gray-400">Aktif Üye</p>
                   </div>
                 </div>
               </motion.div>
@@ -217,15 +218,15 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 }}
-                className="absolute -top-6 -right-6 bg-secondary-900/80 backdrop-blur-lg rounded-2xl p-6 border border-accent-500/20"
+                className="absolute -top-6 -right-6 bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-red-500/20"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-accent-500 to-accent-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
                     <Trophy className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-white">8+</p>
-                    <p className="text-sm text-secondary-400">Yıl Deneyim</p>
+                    <p className="text-sm text-gray-400">Yıl Deneyim</p>
                   </div>
                 </div>
               </motion.div>
@@ -235,7 +236,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 bg-secondary-900/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-900/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -246,11 +247,11 @@ export function WelcomeScreen() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-2">{stat.value}</h3>
-                <p className="text-secondary-400">{stat.label}</p>
+                <p className="text-gray-400">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -266,11 +267,11 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-secondary-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Neden TÖH?
               </span>
             </h2>
-            <p className="text-xl text-secondary-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Modern teknoloji ve deneyimli kadromuz ile Habbo dünyasında en iyi hizmeti sunuyoruz
             </p>
           </motion.div>
@@ -283,12 +284,12 @@ export function WelcomeScreen() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-8 h-full bg-secondary-900/40 border-primary-500/20 hover:border-primary-400/40 transition-all duration-300 group backdrop-blur-sm">
+                <Card className="p-8 h-full bg-gray-900/40 border-gray-700/20 hover:border-gray-600/40 transition-all duration-300 group backdrop-blur-sm">
                   <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
-                  <p className="text-secondary-400 leading-relaxed">{feature.description}</p>
+                  <p className="text-gray-400 leading-relaxed">{feature.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -297,7 +298,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-20 px-6 bg-secondary-900/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-900/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -305,11 +306,11 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
                 Liderlik Kadromuz
               </span>
             </h2>
-            <p className="text-xl text-secondary-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               TÖH'ü bugünlere getiren deneyimli ve kararlı liderlerimiz
             </p>
           </motion.div>
@@ -317,7 +318,7 @@ export function WelcomeScreen() {
           {/* Kurucular */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Crown className="w-6 h-6 mr-2 text-accent-400" />
+              <Crown className="w-6 h-6 mr-2 text-red-400" />
               Kurucular
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -328,21 +329,21 @@ export function WelcomeScreen() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-6 bg-gradient-to-br from-primary-900/30 to-accent-900/30 border-accent-500/30 hover:border-accent-400/50 transition-all duration-300 group text-center backdrop-blur-sm">
+                  <Card className="p-6 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 group text-center backdrop-blur-sm">
                     <div className="relative mb-6">
                       <img
                         src={founder.avatar}
                         alt={founder.name}
-                        className="w-20 h-20 rounded-full mx-auto border-4 border-accent-500/40 group-hover:border-accent-400/60 transition-all duration-300 shadow-lg"
+                        className="w-20 h-20 rounded-full mx-auto border-4 border-red-500/40 group-hover:border-red-400/60 transition-all duration-300 shadow-lg"
                       />
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-accent-400 to-accent-500 rounded-full flex items-center justify-center shadow-lg">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-400 to-red-500 rounded-full flex items-center justify-center shadow-lg">
                         <Crown className="w-4 h-4 text-white" />
                       </div>
                     </div>
                     <h4 className="text-lg font-bold text-white mb-2">{founder.name}</h4>
-                    <p className="text-accent-400 font-medium mb-2">{founder.position}</p>
+                    <p className="text-red-400 font-medium mb-2">{founder.position}</p>
                     <div className="flex justify-center">
-                      <span className="px-3 py-1 bg-accent-500/20 border border-accent-500/30 rounded-full text-accent-300 text-sm font-medium">
+                      <span className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-300 text-sm font-medium">
                         Rank {founder.rank}
                       </span>
                     </div>
@@ -355,7 +356,7 @@ export function WelcomeScreen() {
           {/* Yönetim Kadrosu */}
           <div>
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Star className="w-6 h-6 mr-2 text-primary-400" />
+              <Star className="w-6 h-6 mr-2 text-red-400" />
               Yönetim Kadrosu
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -366,20 +367,20 @@ export function WelcomeScreen() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-6 bg-secondary-900/40 border-primary-500/20 hover:border-primary-400/40 transition-all duration-300 group backdrop-blur-sm">
+                  <Card className="p-6 bg-gray-900/40 border-gray-700/20 hover:border-gray-600/40 transition-all duration-300 group backdrop-blur-sm">
                     <div className="flex items-center space-x-4">
                       <img
                         src={member.avatar}
                         alt={member.name}
-                        className="w-16 h-16 rounded-full border-2 border-primary-600/40 group-hover:border-primary-400/60 transition-all duration-300 shadow-lg"
+                        className="w-16 h-16 rounded-full border-2 border-red-600/40 group-hover:border-red-400/60 transition-all duration-300 shadow-lg"
                       />
                       <div>
                         <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
-                        <p className="text-secondary-400 mb-2">{member.position}</p>
+                        <p className="text-gray-400 mb-2">{member.position}</p>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           member.category === 'discord' 
-                            ? 'bg-primary-500/20 text-primary-300 border border-primary-500/30' 
-                            : 'bg-accent-500/20 text-accent-300 border border-accent-500/30'
+                            ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
+                            : 'bg-red-500/20 text-red-300 border border-red-500/30'
                         }`}>
                           {member.category === 'discord' ? 'Discord Yetkilisi' : 'Koordinatör'}
                         </span>
@@ -402,11 +403,11 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
                 Başarılarımız
               </span>
             </h2>
-            <p className="text-xl text-secondary-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               8 yıllık yolculuğumuzda elde ettiğimiz prestijli başarılar
             </p>
           </motion.div>
@@ -417,13 +418,13 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-accent-900/30 to-accent-800/30 border-accent-500/30 hover:border-accent-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Trophy className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">En İyi Şirket</h3>
-                <p className="text-accent-300 mb-4">2023 Habbo Türkiye Ödülleri</p>
-                <p className="text-secondary-400">Habbo Türkiye'nin en prestijli şirketi ödülünü kazandık</p>
+                <p className="text-red-300 mb-4">2023 Habbo Türkiye Ödülleri</p>
+                <p className="text-gray-400">Habbo Türkiye'nin en prestijli şirketi ödülünü kazandık</p>
               </Card>
             </motion.div>
 
@@ -432,13 +433,13 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-primary-900/30 to-primary-800/30 border-primary-500/30 hover:border-primary-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Güvenlik Lideri</h3>
-                <p className="text-primary-300 mb-4">500+ Başarılı Operasyon</p>
-                <p className="text-secondary-400">Habbo güvenliğinde öncü rol oynuyoruz</p>
+                <p className="text-red-300 mb-4">500+ Başarılı Operasyon</p>
+                <p className="text-gray-400">Habbo güvenliğinde öncü rol oynuyoruz</p>
               </Card>
             </motion.div>
 
@@ -447,13 +448,13 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-secondary-900/30 to-secondary-800/30 border-secondary-500/30 hover:border-secondary-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+             <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
+               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Büyük Topluluk</h3>
-                <p className="text-secondary-300 mb-4">300+ Discord Üyesi</p>
-                <p className="text-secondary-400">Aktif ve güçlü topluluk desteği</p>
+               <p className="text-red-300 mb-4">300+ Discord Üyesi</p>
+               <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
               </Card>
             </motion.div>
           </div>
