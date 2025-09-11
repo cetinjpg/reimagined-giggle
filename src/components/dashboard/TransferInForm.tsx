@@ -218,7 +218,7 @@ export function TransferInForm() {
           loading={loading}
           disabled={loading}
           icon={UserPlus}
-          className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 w-full"
+          className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 w-full"
         >
           Transfer Kaydı Oluştur
         </Button>

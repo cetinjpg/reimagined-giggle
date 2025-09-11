@@ -203,7 +203,7 @@ export function LicenseForm() {
               loading={issuing}
               disabled={issuing || !licenseType}
               icon={Plus}
-              className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
             >
               Lisans Ver
             </Button>

@@ -12,4 +12,10 @@ export function setupTestData() {
   
   // Admin kullanıcısına daha fazla süre ekle
   addWorkTimeToUser('admin', 500);
+  
+  // Diğer test kullanıcılarına da süre ekle
+  addWorkTimeToUser('mehmet123', 25);
+  addWorkTimeToUser('ayse456', 35);
+  addWorkTimeToUser('ali789', 65);
+  addWorkTimeToUser('fatma321', 30);
 }

@@ -31,14 +31,7 @@ export function BulkPromotionForm() {
       .split('\n')
       .map(line => line.trim())
       .filter(line => line)
-      .map(line => {
-        const parts = line.split(',').map(p => p.trim());
-        return {
-          username: parts[0],
-          currentRank: parts[1] || 'Stajyer',
-          badge: parts[2] || 'memurlar'
-        };
-      });
+      .map(username => ({ username }));
 
     if (users.length === 0) {
       toast.error('Geçerli kullanıcı bulunamadı!');
@@ -50,19 +43,22 @@ export function BulkPromotionForm() {
 
     for (const user of users) {
       try {
+        // Kullanıcı bilgilerini al
+        const userData = await tohAPI.getUserInfo(user.username);
+        
         // Otomatik terfi (süre kontrolü olmadan)
         const result = calculatePromotion({
-          userName: user.username,
+          userName: userData.username,
           workTime: 9999, // Yeterli süre ver
-          badge: user.badge,
-          rank: user.currentRank
+          badge: userData.badge,
+          rank: userData.currentRank
         });
 
         promotionResults.push({
-          username: user.username,
+          username: userData.username,
           success: result.success,
           message: result.message,
-          oldRank: user.currentRank,
+          oldRank: userData.currentRank,
           newRank: result.nextRank,
           badge: result.badge
         });
@@ -70,14 +66,14 @@ export function BulkPromotionForm() {
         if (result.success) {
           await discordAPI.sendLog({
             title: '🎉 Toplu Terfi',
-            description: `${user.username} otomatik terfi aldı`,
+            description: `${userData.username} otomatik terfi aldı`,
             color: 0x6b7280,
             fields: [
-              { name: 'Eski Rütbe', value: user.currentRank, inline: true },
+              { name: 'Eski Rütbe', value: userData.currentRank, inline: true },
               { name: 'Yeni Rütbe', value: result.nextRank || 'Belirtilmemiş', inline: true },
-              { name: 'Rozet', value: result.badge || user.badge, inline: true }
+              { name: 'Rozet', value: result.badge || userData.badge, inline: true }
             ],
-            username: user.username
+            username: userData.username
           });
         }
 
@@ -87,8 +83,8 @@ export function BulkPromotionForm() {
         promotionResults.push({
           username: user.username,
           success: false,
-          message: 'İşlem sırasında hata oluştu',
-          oldRank: user.currentRank
+          message: 'Kullanıcı bulunamadı veya hata oluştu',
+          oldRank: 'Bilinmiyor'
         });
       }
     }
@@ -135,20 +131,20 @@ kullanici3,Güvenlik Memuru I,guvenlik`;
         </h2>
 
         {/* Instructions */}
-        <Card className="p-6 bg-gradient-to-r from-gray-900/20 to-gray-800/20 border border-gray-700/50 mb-8">
+        <Card className="p-6 bg-gradient-to-r from-gray-800/30 to-gray-700/30 border border-gray-600/50 mb-8">
           <h3 className="text-lg font-semibold text-white mb-4">Nasıl Çalışır?</h3>
           <div className="space-y-3">
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
-              <p className="text-gray-300">Her satıra bir kullanıcı bilgisi yazın</p>
+              <p className="text-gray-300">Her satıra sadece kullanıcı adı yazın (her satırda bir kullanıcı)</p>
             </div>
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
-              <p className="text-gray-300">Format: kullanici_adi,mevcut_rutbe,rozet</p>
+              <p className="text-gray-300">Sistem otomatik olarak kullanıcının mevcut rütbesini bulur</p>
             </div>
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
-              <p className="text-gray-300">Sistem otomatik olarak bir sonraki rütbeye terfi eder</p>
+              <p className="text-gray-300">Süre kısıtlaması olmadan otomatik terfi verir</p>
             </div>
           </div>
           
@@ -170,14 +166,16 @@ kullanici3,Güvenlik Memuru I,guvenlik`;
           </label>
           <textarea
             className="w-full h-48 px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-gray-500 focus:ring-gray-500/20 focus:outline-none focus:ring-2 resize-none font-mono text-sm"
-            placeholder={`kullanici1,Stajyer,memurlar
-kullanici2,Memur I,memurlar
-kullanici3,Güvenlik Memuru I,guvenlik`}
+            placeholder={`kullanici1
+kullanici2
+kullanici3
+test
+admin`}
             value={userList}
             onChange={(e) => setUserList(e.target.value)}
           />
           <p className="text-xs text-gray-400 mt-2">
-            Format: kullanici_adi,mevcut_rutbe,rozet
+            Her satıra sadece kullanıcı adı yazın
           </p>
         </div>
 
