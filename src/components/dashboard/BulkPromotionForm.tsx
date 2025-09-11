@@ -447,19 +447,19 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-             <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 text-center backdrop-blur-sm">
-               <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <div className="space-y-3 text-sm text-gray-400">
+              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <Users className="w-8 h-8 text-white" />
                 </div>
-                  <span className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</span>
-               <p className="text-gray-300 mb-4">300+ Discord Üyesi</p>
-               <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
+                <h3 className="text-2xl font-bold text-white mb-4">Topluluk Lideri</h3>
+                <p className="text-gray-300 mb-4">300+ Discord Üyesi</p>
+                <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
               </Card>
-                  <span className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</span>
+            </motion.div>
           </div>
         </div>
       </section>
-                  <span className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</span>
+
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -473,7 +473,7 @@ export function WelcomeScreen() {
               </div>
               
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   TÖH Ailesine Katıl
                 </span>
               </h2>
@@ -485,7 +485,7 @@ export function WelcomeScreen() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-              <h3 className="text-lg font-semibold text-white">
+                  onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
                   className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-2xl shadow-red-500/25"
@@ -507,22 +507,21 @@ export function WelcomeScreen() {
         </div>
       </section>
 
-                      ? 'border-green-500 bg-green-900/20' 
-                      : 'border-red-500 bg-red-900/20'
+      {/* Footer */}
+      <footer className="py-12 px-6 bg-black/50 backdrop-blur-sm border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
-                className="w-full h-48 px-4 py-3 rounded-lg border border-gray-600 bg-gray-800 text-white focus:border-red-500 focus:ring-red-500/20 focus:outline-none focus:ring-2 resize-none"
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Shield className="w-6 h-6 text-white" />
-                          ? 'text-green-200' 
-                          : 'text-red-200'
+              </div>
+              <div>
                 <h3 className="text-lg font-bold text-white">TÖH</h3>
                 <p className="text-sm text-gray-400">Türkiye Özel Harekat</p>
               </div>
             </div>
             
-                          ? 'text-green-300' 
-                          : 'text-red-300'
+            <div className="text-center md:text-right">
               <p className="text-sm text-gray-500">Habbo Türkiye'nin en prestijli şirketi</p>
             </div>
           </div>
@@ -530,9 +529,10 @@ export function WelcomeScreen() {
       </footer>
 
       {/* Auth Modal */}
-            <Card className="p-6 bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-700/50">
-              <h3 className="font-semibold text-white mb-4 flex items-center">
-                <Search className="w-5 h-5 mr-2 text-red-500" />
+      <Modal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        title={authType === 'login' ? 'Giriş Yap' : 'TÖH\'e Katıl'}
         size="md"
       >
         <AuthForm
