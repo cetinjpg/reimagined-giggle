@@ -50,8 +50,8 @@ export function Input({
           disabled={disabled}
           required={required}
           className={`
-            w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white 
-            placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20 
+            w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white 
+            placeholder-gray-500 dark:placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20 
             focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed
             ${Icon ? 'pl-10' : ''}
             ${className}

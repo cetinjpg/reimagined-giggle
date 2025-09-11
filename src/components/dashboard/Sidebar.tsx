@@ -36,11 +36,12 @@ export function Sidebar() {
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       className={`fixed left-0 top-0 h-full bg-gradient-to-b from-gray-900 via-gray-800 to-black border-r border-gray-700/50 z-40 transition-all duration-300 ${
+      className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-40 transition-all duration-300 ${
         sidebarCollapsed ? 'w-20' : 'w-80'
       }`}
     >
       {/* Logo */}
-      <div className="p-6 border-b border-gray-700/50">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
             <Shield className="w-7 h-7 text-white" />
@@ -50,7 +51,7 @@ export function Sidebar() {
               <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                 TÖH
               </h1>
-              <p className="text-xs text-gray-400">Yönetim Sistemi</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Yönetim Sistemi</p>
             </div>
           )}
         </div>
@@ -59,7 +60,7 @@ export function Sidebar() {
       {/* Toggle Button */}
       <button
         onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-        className="absolute -right-3 top-20 w-6 h-6 bg-gray-800 border border-gray-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+        className="absolute -right-3 top-20 w-6 h-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
         {sidebarCollapsed ? <ChevronRight className="w-3 h-3" /> : <ChevronLeft className="w-3 h-3" />}
       </button>
@@ -73,7 +74,7 @@ export function Sidebar() {
             className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
               currentPage === item.id
                 ? 'bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 text-red-300'
-                : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50'
             }`}
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.98 }}
