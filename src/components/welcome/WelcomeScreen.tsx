@@ -47,25 +47,25 @@ export function WelcomeScreen() {
       icon: Shield,
       title: 'Güvenli Sistem',
       description: 'Discord entegrasyonu ile güvenli ve hızlı işlemler',
-      color: 'from-primary-500 to-primary-600'
+      color: 'from-red-500 to-red-600'
     },
     {
       icon: Trophy,
       title: 'Terfi Sistemi',
       description: 'Otomatik terfi hesaplama ve takip sistemi',
-      color: 'from-accent-500 to-accent-600'
+      color: 'from-orange-500 to-red-500'
     },
     {
       icon: Users,
       title: 'Takım Yönetimi',
       description: 'Personel ve eğitim yönetimi araçları',
-      color: 'from-secondary-500 to-secondary-600'
+      color: 'from-gray-600 to-gray-700'
     },
     {
       icon: Target,
       title: 'Operasyon Takibi',
       description: 'Görevler ve operasyonların detaylı takibi',
-      color: 'from-primary-600 to-accent-500'
+      color: 'from-red-600 to-orange-500'
     }
   ];
 
@@ -82,9 +82,9 @@ export function WelcomeScreen() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white overflow-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-lg border-b border-gray-700/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-lg border-b border-gray-800/50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -96,8 +96,7 @@ export function WelcomeScreen() {
                 <Shield className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                   TÖH
                 </h1>
                 <p className="text-xs text-gray-400">Türkiye Özel Harekat</p>
@@ -150,7 +149,7 @@ export function WelcomeScreen() {
                   TÖH
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                   Türkiye Özel Harekat
                 </span>
               </h1>
@@ -193,7 +192,7 @@ export function WelcomeScreen() {
                   alt="TÖH Operasyon"
                   className="rounded-2xl shadow-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent rounded-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
               </div>
               
               {/* Floating Stats */}
@@ -201,7 +200,7 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
-                className="absolute -bottom-6 -left-6 bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/20"
+                className="absolute -bottom-6 -left-6 bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-800/50"
               >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
@@ -218,7 +217,7 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 }}
-                className="absolute -top-6 -right-6 bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-red-500/20"
+                className="absolute -top-6 -right-6 bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-red-500/20"
               >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
@@ -284,7 +283,7 @@ export function WelcomeScreen() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-8 h-full bg-gray-900/40 border-gray-700/20 hover:border-gray-600/40 transition-all duration-300 group backdrop-blur-sm">
+                <Card className="p-8 h-full bg-gray-900/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
                   <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
@@ -306,7 +305,7 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                 Liderlik Kadromuz
               </span>
             </h2>
@@ -367,7 +366,7 @@ export function WelcomeScreen() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-6 bg-gray-900/40 border-gray-700/20 hover:border-gray-600/40 transition-all duration-300 group backdrop-blur-sm">
+                  <Card className="p-6 bg-gray-900/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
                     <div className="flex items-center space-x-4">
                       <img
                         src={member.avatar}
@@ -380,7 +379,7 @@ export function WelcomeScreen() {
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           member.category === 'discord' 
                             ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
-                            : 'bg-red-500/20 text-red-300 border border-red-500/30'
+                            : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
                         }`}>
                           {member.category === 'discord' ? 'Discord Yetkilisi' : 'Koordinatör'}
                         </span>
@@ -403,7 +402,7 @@ export function WelcomeScreen() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                 Başarılarımız
               </span>
             </h2>
@@ -433,12 +432,12 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Güvenlik Lideri</h3>
-                <p className="text-red-300 mb-4">500+ Başarılı Operasyon</p>
+                <p className="text-orange-300 mb-4">500+ Başarılı Operasyon</p>
                 <p className="text-gray-400">Habbo güvenliğinde öncü rol oynuyoruz</p>
               </Card>
             </motion.div>
@@ -448,12 +447,12 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-             <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+             <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 text-center backdrop-blur-sm">
+               <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Büyük Topluluk</h3>
-               <p className="text-red-300 mb-4">300+ Discord Üyesi</p>
+               <p className="text-gray-300 mb-4">300+ Discord Üyesi</p>
                <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
               </Card>
             </motion.div>
@@ -468,18 +467,18 @@ export function WelcomeScreen() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="bg-gradient-to-r from-primary-900/30 to-accent-900/30 border border-primary-500/30 rounded-3xl p-12 backdrop-blur-sm">
-              <div className="w-20 h-20 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+            <div className="bg-gradient-to-r from-gray-900/30 to-gray-800/30 border border-red-500/30 rounded-3xl p-12 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
                 <Sword className="w-10 h-10 text-white" />
               </div>
               
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-secondary-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   TÖH Ailesine Katıl
                 </span>
               </h2>
               
-              <p className="text-xl text-secondary-400 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-400 mb-8 leading-relaxed">
                 Habbo'nun en prestijli şirketinde yerini al. Profesyonel ekibimizle birlikte 
                 büyü, gelişim fırsatlarından yararlan ve Habbo dünyasında iz bırak.
               </p>
@@ -489,7 +488,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-2xl shadow-primary-500/25"
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-2xl shadow-red-500/25"
                 >
                   Şimdi Başvur
                 </Button>
@@ -498,7 +497,7 @@ export function WelcomeScreen() {
                   variant="outline"
                   size="lg"
                   icon={LogIn}
-                  className="border-primary-500/30 text-primary-300 hover:bg-primary-500/20 hover:border-primary-400/50"
+                  className="border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400/50"
                 >
                   Giriş Yap
                 </Button>
@@ -509,22 +508,22 @@ export function WelcomeScreen() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-secondary-900/60 border-t border-primary-500/20 backdrop-blur-sm">
+      <footer className="py-12 px-6 bg-black/60 border-t border-gray-800/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white">TÖH</h3>
-                <p className="text-sm text-secondary-400">Türkiye Özel Harekat</p>
+                <p className="text-sm text-gray-400">Türkiye Özel Harekat</p>
               </div>
             </div>
             
             <div className="text-center md:text-right">
-              <p className="text-secondary-400 mb-2">© 2024 TÖH - Tüm hakları saklıdır</p>
-              <p className="text-sm text-secondary-500">Habbo Türkiye'nin en prestijli şirketi</p>
+              <p className="text-gray-400 mb-2">© 2024 TÖH - Tüm hakları saklıdır</p>
+              <p className="text-sm text-gray-500">Habbo Türkiye'nin en prestijli şirketi</p>
             </div>
           </div>
         </div>
