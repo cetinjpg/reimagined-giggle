@@ -239,7 +239,6 @@ export function TransferOutForm() {
           disabled={loading}
           icon={UserMinus}
           className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
-          className="bg-red-500 hover:bg-red-600"
         >
           Ayrılık Kaydı Oluştur
         </Button>
