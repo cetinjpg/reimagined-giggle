@@ -92,7 +92,7 @@ export function WelcomeScreen() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
                 <Shield className="w-7 h-7 text-white" />
               </div>
               <div>
@@ -139,7 +139,7 @@ export function WelcomeScreen() {
             >
               <div className="mb-6">
                 <span className="inline-flex items-center px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-300 text-sm font-medium mb-4">
-                  <Crown className="w-4 h-4 mr-2" />
+                  <Crown className="w-4 h-4 mr-2 text-yellow-400" />
                   Habbo'nun En Prestijli Şirketi
                 </span>
               </div>
@@ -190,7 +190,7 @@ export function WelcomeScreen() {
                 <img
                   src="https://images-ext-1.discordapp.net/external/Vpv0uKge2p8fVt_uttggVTiJiPbnASHfnkJWG6gyG_0/https/pbs.twimg.com/media/GzNtsIJXoAA92SR.jpg%3Alarge?format=webp"
                   alt="TÖH Operasyon"
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl shadow-2xl border border-gray-700/50"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
               </div>
@@ -200,10 +200,10 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
-                className="absolute -bottom-6 -left-6 bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-800/50"
+                className="absolute -bottom-6 -left-6 bg-gray-900/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-gray-700 rounded-xl flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -217,10 +217,10 @@ export function WelcomeScreen() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 }}
-                className="absolute -top-6 -right-6 bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-red-500/20"
+                className="absolute -top-6 -right-6 bg-gray-900/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-gray-700 rounded-xl flex items-center justify-center">
                     <Trophy className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -235,7 +235,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -258,7 +258,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -297,7 +297,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -317,7 +317,7 @@ export function WelcomeScreen() {
           {/* Kurucular */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Crown className="w-6 h-6 mr-2 text-red-500" />
+              <Crown className="w-6 h-6 mr-2 text-yellow-400" />
               Kurucular
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -336,7 +336,7 @@ export function WelcomeScreen() {
                         className="w-20 h-20 rounded-full mx-auto border-4 border-gray-600/40 group-hover:border-gray-500/60 transition-all duration-300 shadow-lg"
                       />
                       <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center shadow-lg">
-                        <Crown className="w-4 h-4 text-white" />
+                        <Crown className="w-4 h-4 text-yellow-400" />
                       </div>
                     </div>
                     <h4 className="text-lg font-bold text-white mb-2">{founder.name}</h4>
@@ -355,7 +355,7 @@ export function WelcomeScreen() {
           {/* Yönetim Kadrosu */}
           <div>
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center">
-              <Star className="w-6 h-6 mr-2 text-red-500" />
+              <Star className="w-6 h-6 mr-2 text-gray-400" />
               Yönetim Kadrosu
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -394,7 +394,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -461,7 +461,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 border-t border-gray-800/50">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -511,7 +511,7 @@ export function WelcomeScreen() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-r from-gray-600 to-gray-700 rounded-lg flex items-center justify-center shadow-lg">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <div>

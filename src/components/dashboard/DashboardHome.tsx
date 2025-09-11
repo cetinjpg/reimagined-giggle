@@ -101,7 +101,7 @@ export function DashboardHome() {
       {/* Welcome Card */}
       <Card className="p-8 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-700/50">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg">
+          <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center shadow-lg">
             <Shield className="w-8 h-8 text-white" />
           </div>
           <div>

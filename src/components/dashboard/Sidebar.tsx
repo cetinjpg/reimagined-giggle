@@ -42,7 +42,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-700">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
             <Shield className="w-7 h-7 text-white" />
           </div>
           {!sidebarCollapsed && (
