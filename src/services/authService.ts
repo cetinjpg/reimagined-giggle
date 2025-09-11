@@ -128,6 +128,68 @@ class LocalAuthService {
           joinDate: new Date().toISOString(),
           isActive: true
         }
+      // Daha fazla test kullanıcısı ekle
+      ,
+      {
+        id: '7',
+        username: 'emre999',
+        fullName: 'Emre Çelik',
+        email: 'emre@toh.com',
+        password: 'emre123',
+        habboUsername: 'emre999',
+        rank: 'Stajyer',
+        badge: 'memurlar',
+        workTime: 15,
+        salary: 25,
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
+        joinDate: new Date().toISOString(),
+        isActive: true
+      },
+      {
+        id: '8',
+        username: 'zeynep555',
+        fullName: 'Zeynep Arslan',
+        email: 'zeynep@toh.com',
+        password: 'zeynep123',
+        habboUsername: 'zeynep555',
+        rank: 'Memur II',
+        badge: 'memurlar',
+        workTime: 60,
+        salary: 90,
+        avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2ac67a0?w=300&h=300&fit=crop&crop=face',
+        joinDate: new Date().toISOString(),
+        isActive: true
+      },
+      {
+        id: '9',
+        username: 'can777',
+        fullName: 'Can Yıldız',
+        email: 'can@toh.com',
+        password: 'can123',
+        habboUsername: 'can777',
+        rank: 'Güvenlik Memuru I',
+        badge: 'guvenlik',
+        workTime: 45,
+        salary: 70,
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
+        joinDate: new Date().toISOString(),
+        isActive: true
+      },
+      {
+        id: '10',
+        username: 'selin444',
+        fullName: 'Selin Kara',
+        email: 'selin@toh.com',
+        password: 'selin123',
+        habboUsername: 'selin444',
+        rank: 'Stajyer',
+        badge: 'memurlar',
+        workTime: 10,
+        salary: 15,
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
+        joinDate: new Date().toISOString(),
+        isActive: true
+      }
       ];
       
       localStorage.setItem(this.USERS_KEY, JSON.stringify(defaultUsers));
@@ -245,6 +307,20 @@ class LocalAuthService {
       throw new Error('Kullanıcı bulunamadı!');
     }
 
+    // Eğitim durumunu belirle (test için sabit)
+    const educationStatus: Record<string, boolean> = {
+      'admin': true,        // Eğitimi var
+      'test': false,        // Eğitimi yok
+      'mehmet123': false,   // Eğitimi yok
+      'ayse456': true,      // Eğitimi var
+      'ali789': true,       // Eğitimi var
+      'fatma321': false,    // Eğitimi yok
+      'emre999': false,     // Eğitimi yok
+      'zeynep555': false,   // Eğitimi yok
+      'can777': false,      // Eğitimi yok
+      'selin444': false     // Eğitimi yok
+    };
+
     // Terfi hesaplaması için gerekli bilgileri döndür
     const requiredTime = this.getRequiredTimeForPromotion(user.badge, user.rank);
     const canPromote = user.workTime >= requiredTime;
@@ -260,7 +336,8 @@ class LocalAuthService {
       canPromote: canPromote,
       requiredTime: requiredTime,
       salaryRating: Math.floor(user.workTime / 480), // Her 8 saatte 1 rozet
-      totalSalaryRating: user.salary
+      totalSalaryRating: user.salary,
+      hasEducation: educationStatus[user.username.toLowerCase()] || false
     };
   }
 
