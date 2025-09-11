@@ -9,7 +9,7 @@ interface CardProps {
 }
 
 export function Card({ children, className = '', hover = false, onClick }: CardProps) {
-  const baseClasses = 'bg-gray-900/80 backdrop-blur-sm border border-gray-800/50 rounded-xl shadow-lg';
+  const baseClasses = 'bg-gray-950/80 backdrop-blur-sm border border-gray-800/50 rounded-xl shadow-lg';
   const hoverClasses = hover ? 'hover:shadow-xl hover:border-gray-700/50 transition-all duration-300 cursor-pointer' : '';
   const classes = `${baseClasses} ${hoverClasses} ${className}`;
 

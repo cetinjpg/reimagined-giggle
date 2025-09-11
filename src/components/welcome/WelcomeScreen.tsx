@@ -82,9 +82,9 @@ export function WelcomeScreen() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+    <div className="min-h-screen bg-gray-950 text-white overflow-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-lg border-b border-gray-800">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/90 backdrop-blur-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -112,14 +112,14 @@ export function WelcomeScreen() {
                 onClick={() => openAuth('login')}
                 variant="ghost"
                 icon={LogIn}
-                className="text-white hover:bg-red-500/20 border border-red-500/30"
+                className="text-white hover:bg-gray-700/50 border border-gray-600"
               >
                 Giriş Yap
               </Button>
               <Button
                 onClick={() => openAuth('register')}
                 icon={UserPlus}
-                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg shadow-red-500/25"
+                className="bg-gray-700 hover:bg-gray-600 text-white shadow-lg"
               >
                 TÖH'e Katıl
               </Button>
@@ -165,7 +165,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-2xl shadow-red-500/25"
+                  className="bg-gray-700 hover:bg-gray-600 text-white shadow-2xl"
                 >
                   Hemen Başvur
                 </Button>
@@ -235,7 +235,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 bg-gray-900/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -246,7 +246,7 @@ export function WelcomeScreen() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-2">{stat.value}</h3>
@@ -283,8 +283,8 @@ export function WelcomeScreen() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-8 h-full bg-gray-900/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
-                  <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Card className="p-8 h-full bg-gray-950/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
+                  <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
@@ -297,7 +297,7 @@ export function WelcomeScreen() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-20 px-6 bg-gray-900/40 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-gray-950/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -328,21 +328,21 @@ export function WelcomeScreen() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-6 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 group text-center backdrop-blur-sm">
+                  <Card className="p-6 bg-gradient-to-br from-gray-950/30 to-gray-900/30 border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 group text-center backdrop-blur-sm">
                     <div className="relative mb-6">
                       <img
                         src={founder.avatar}
                         alt={founder.name}
-                        className="w-20 h-20 rounded-full mx-auto border-4 border-red-500/40 group-hover:border-red-400/60 transition-all duration-300 shadow-lg"
+                        className="w-20 h-20 rounded-full mx-auto border-4 border-gray-600/40 group-hover:border-gray-500/60 transition-all duration-300 shadow-lg"
                       />
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center shadow-lg">
                         <Crown className="w-4 h-4 text-white" />
                       </div>
                     </div>
                     <h4 className="text-lg font-bold text-white mb-2">{founder.name}</h4>
-                    <p className="text-red-500 font-medium mb-2">{founder.position}</p>
+                    <p className="text-gray-400 font-medium mb-2">{founder.position}</p>
                     <div className="flex justify-center">
-                      <span className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-medium">
+                      <span className="px-3 py-1 bg-gray-700/20 border border-gray-600/30 rounded-full text-gray-300 text-sm font-medium">
                         Rank {founder.rank}
                       </span>
                     </div>
@@ -366,20 +366,20 @@ export function WelcomeScreen() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-6 bg-gray-900/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
+                  <Card className="p-6 bg-gray-950/40 border-gray-800/30 hover:border-gray-700/50 transition-all duration-300 group backdrop-blur-sm">
                     <div className="flex items-center space-x-4">
                       <img
                         src={member.avatar}
                         alt={member.name}
-                        className="w-16 h-16 rounded-full border-2 border-red-600/40 group-hover:border-red-400/60 transition-all duration-300 shadow-lg"
+                        className="w-16 h-16 rounded-full border-2 border-gray-600/40 group-hover:border-gray-500/60 transition-all duration-300 shadow-lg"
                       />
                       <div>
                         <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
                         <p className="text-gray-400 mb-2">{member.position}</p>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           member.category === 'discord' 
-                            ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
-                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                            ? 'bg-gray-700/20 text-gray-300 border border-gray-600/30' 
+                            : 'bg-gray-700/20 text-gray-300 border border-gray-600/30'
                         }`}>
                           {member.category === 'discord' ? 'Discord Yetkilisi' : 'Koordinatör'}
                         </span>
@@ -417,12 +417,12 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-red-500/30 hover:border-red-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Card className="p-8 bg-gradient-to-br from-gray-950/30 to-gray-900/30 border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Trophy className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">En İyi Şirket</h3>
-                <p className="text-red-400 mb-4">2023 Habbo Türkiye Ödülleri</p>
+                <p className="text-gray-400 mb-4">2023 Habbo Türkiye Ödülleri</p>
                 <p className="text-gray-400">Habbo Türkiye'nin en prestijli şirketi ödülünü kazandık</p>
               </Card>
             </motion.div>
@@ -432,12 +432,12 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 text-center backdrop-blur-sm">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Card className="p-8 bg-gradient-to-br from-gray-950/30 to-gray-900/30 border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 text-center backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Güvenlik Lideri</h3>
-                <p className="text-red-400 mb-4">500+ Başarılı Operasyon</p>
+                <p className="text-gray-400 mb-4">500+ Başarılı Operasyon</p>
                 <p className="text-gray-400">Habbo güvenliğinde öncü rol oynuyoruz</p>
               </Card>
             </motion.div>
@@ -447,12 +447,12 @@ export function WelcomeScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-             <Card className="p-8 bg-gradient-to-br from-gray-900/30 to-gray-800/30 border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 text-center backdrop-blur-sm">
-               <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+             <Card className="p-8 bg-gradient-to-br from-gray-950/30 to-gray-900/30 border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 text-center backdrop-blur-sm">
+               <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Büyük Topluluk</h3>
-               <p className="text-red-400 mb-4">300+ Discord Üyesi</p>
+               <p className="text-gray-400 mb-4">300+ Discord Üyesi</p>
                <p className="text-gray-400">Aktif ve güçlü topluluk desteği</p>
               </Card>
             </motion.div>
@@ -467,8 +467,8 @@ export function WelcomeScreen() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="bg-gradient-to-r from-gray-900/30 to-gray-800/30 border border-red-500/30 rounded-3xl p-12 backdrop-blur-sm">
-              <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+            <div className="bg-gradient-to-r from-gray-950/30 to-gray-900/30 border border-gray-700/30 rounded-3xl p-12 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
                 <Sword className="w-10 h-10 text-white" />
               </div>
               
@@ -488,7 +488,7 @@ export function WelcomeScreen() {
                   onClick={() => openAuth('register')}
                   size="lg"
                   icon={UserPlus}
-                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-2xl shadow-red-500/25"
+                  className="bg-gray-700 hover:bg-gray-600 text-white shadow-2xl"
                 >
                   Şimdi Başvur
                 </Button>
@@ -507,11 +507,11 @@ export function WelcomeScreen() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-black/60 border-t border-gray-800/50 backdrop-blur-sm">
+      <footer className="py-12 px-6 bg-gray-950/60 border-t border-gray-800/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center shadow-lg">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <div>

@@ -18,7 +18,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-30 bg-gray-900/80 backdrop-blur-lg border-b border-gray-700">
+    <header className="fixed top-0 right-0 left-0 z-30 bg-gray-950/80 backdrop-blur-lg border-b border-gray-700">
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center space-x-4">
           <h2 className="text-xl font-bold text-white">
@@ -53,7 +53,7 @@ export function Header() {
               <p className="text-xs text-gray-400">{user?.rank || 'Stajyer'}</p>
             </div>
             
-            <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-white" />
             </div>
 

@@ -42,12 +42,12 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-700">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center shadow-lg">
             <Shield className="w-7 h-7 text-white" />
           </div>
           {!sidebarCollapsed && (
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-white">
                 TÖH
               </h1>
               <p className="text-xs text-gray-400">Yönetim Sistemi</p>
