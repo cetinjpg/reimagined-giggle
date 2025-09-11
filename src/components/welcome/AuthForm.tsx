@@ -145,7 +145,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
     return (
       <div className="space-y-6">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <LogIn className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-2xl font-bold text-gray-800 mb-2">TÖH'e Hoş Geldin!</h3>
@@ -180,7 +180,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
             loading={loading}
             disabled={loading}
             icon={LogIn}
-            className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 py-4 text-lg"
+            className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 py-4 text-lg"
           >
             Giriş Yap
           </Button>
@@ -193,7 +193,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
             <button
               type="button"
               onClick={onToggle}
-              className="text-primary-500 hover:text-primary-600 font-semibold"
+              className="text-gray-400 hover:text-gray-300 font-semibold"
             >
               TÖH'e Katıl
             </button>
@@ -239,7 +239,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
             className="space-y-6"
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">Habbo Kullanıcı Adın</h3>
@@ -261,7 +261,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
               fullWidth
               loading={loading}
               disabled={loading}
-              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 py-4 text-lg"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 py-4 text-lg"
             >
               Devam Et
             </Button>
@@ -278,14 +278,14 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
             className="space-y-6"
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">Doğrulama</h3>
               <p className="text-gray-600">Aşağıdaki kodu Habbo mottona ekle</p>
             </div>
 
-            <div className="bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 border-2 border-primary-200 dark:border-primary-700 rounded-2xl p-6">
+            <div className="bg-gradient-to-r from-gray-800/30 to-gray-700/30 border-2 border-gray-600/50 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Doğrulama Kodu:</span>
                 <Button
@@ -293,13 +293,13 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
                   variant="ghost"
                   size="sm"
                   icon={Copy}
-                  className="text-primary-500 hover:text-primary-600"
+                  className="text-gray-400 hover:text-gray-300"
                 >
                   Kopyala
                 </Button>
               </div>
-              <div className="bg-white dark:bg-secondary-800 rounded-xl p-4 border-2 border-dashed border-primary-300 dark:border-primary-600">
-                <code className="text-2xl font-bold text-primary-600 block text-center">
+              <div className="bg-gray-800 rounded-xl p-4 border-2 border-dashed border-gray-600">
+                <code className="text-2xl font-bold text-gray-300 block text-center">
                   {generatedCode}
                 </code>
               </div>
@@ -320,7 +320,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
               fullWidth
               loading={loading}
               disabled={loading}
-              className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 py-4 text-lg"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 py-4 text-lg"
             >
               {verificationStatus === 'checking' ? 'Doğrulanıyor...' : 'Doğrula'}
             </Button>
@@ -346,7 +346,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
             className="space-y-6"
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Lock className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">Şifre Belirle</h3>
@@ -381,7 +381,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
               loading={loading}
               disabled={loading}
               icon={UserPlus}
-              className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 py-4 text-lg"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 py-4 text-lg"
             >
               TÖH'e Katıl
             </Button>
@@ -405,7 +405,7 @@ export function AuthForm({ type, onSubmit, onToggle }: AuthFormProps) {
           <button
             type="button"
             onClick={onToggle}
-            className="text-primary-500 hover:text-primary-600 font-semibold"
+            className="text-gray-400 hover:text-gray-300 font-semibold"
           >
             Giriş Yap
           </button>
