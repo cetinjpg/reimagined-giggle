@@ -219,6 +219,7 @@ export function TransferInForm() {
           disabled={loading}
           icon={UserPlus}
           className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 w-full"
+        >
           Transfer Kaydı Oluştur
         </Button>
       </Card>
@@ -283,7 +284,6 @@ export function TransferInForm() {
                         size="sm"
                         icon={CheckCircle}
                         className="border-green-500/30 text-green-300 hover:bg-green-500/20"
-                        className="text-accent-600 hover:text-accent-700"
                       >
                         Onayla
                       </Button>
