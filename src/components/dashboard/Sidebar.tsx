@@ -35,7 +35,6 @@ export function Sidebar() {
     <motion.div
       initial={{ x: -300 }}
       animate={{ x: 0 }}
-      className={`fixed left-0 top-0 h-full bg-gradient-to-b from-gray-900 via-gray-800 to-black border-r border-gray-700/50 z-40 transition-all duration-300 ${
       className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-40 transition-all duration-300 ${
         sidebarCollapsed ? 'w-20' : 'w-80'
       }`}
