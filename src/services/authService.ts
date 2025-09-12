@@ -331,7 +331,7 @@ class LocalAuthService {
       currentRank: user.rank,
       nextRank: nextRank,
       workTime: user.workTime,
-      workHours: Math.floor(user.workTime / 60),
+      workHours: user.workTime / 60, // Dakikayı saate çevir (ondalıklı)
       badge: user.badge,
       canPromote: canPromote,
       requiredTime: requiredTime,
