@@ -42,27 +42,27 @@ export function SalaryForm() {
       
       // Maaş rozeti bilgilerini hesapla
       const workHours = userData.workHours || 0;
+      
+      // Mevcut rozeti bul (sahip olduğu en yüksek rozet)
       let currentBadge = null;
-      let nextBadge = null;
-      let canGetSalary = false;
-      let hoursToNext = 0;
-
-      for (let i = 0; i < salaryBadges.length; i++) {
+      for (let i = salaryBadges.length - 1; i >= 0; i--) {
         if (workHours >= salaryBadges[i].requiredHours) {
           currentBadge = salaryBadges[i];
-        } else {
-          nextBadge = salaryBadges[i];
-          hoursToNext = nextBadge.requiredHours - workHours;
-          canGetSalary = workHours >= nextBadge.requiredHours;
           break;
         }
       }
       
-      // Eğer tüm rozetleri aldıysa
-      if (!nextBadge && currentBadge) {
-        canGetSalary = false;
-        hoursToNext = 0;
+      // Sonraki rozeti bul (henüz alamadığı en düşük rozet)
+      let nextBadge = null;
+      for (let i = 0; i < salaryBadges.length; i++) {
+        if (workHours < salaryBadges[i].requiredHours) {
+          nextBadge = salaryBadges[i];
+          break;
+        }
       }
+      
+      const canGetSalary = nextBadge !== null;
+      const hoursToNext = nextBadge ? nextBadge.requiredHours - workHours : 0;
 
       setUserInfo({
         ...userData,
