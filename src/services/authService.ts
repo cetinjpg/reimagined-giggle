@@ -139,7 +139,7 @@ class LocalAuthService {
         habboUsername: 'emre999',
         rank: 'Stajyer',
         badge: 'memurlar',
-        workTime: 960, // 16 saat - Demir alabilir (16 saat gerekli)
+        workTime: 1200, // 16 saat - Demir alabilir (16 saat gerekli)
         salary: 25,
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
