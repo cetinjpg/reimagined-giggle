@@ -45,17 +45,21 @@ export function SalaryForm() {
       let currentBadge = null;
       let nextBadge = null;
       let canGetSalary = false;
+      let hoursToNext = 0;
 
       for (let i = 0; i < salaryBadges.length; i++) {
         if (workHours >= salaryBadges[i].requiredHours) {
           currentBadge = salaryBadges[i];
           if (i < salaryBadges.length - 1) {
             nextBadge = salaryBadges[i + 1];
+            hoursToNext = nextBadge.requiredHours - workHours;
+            canGetSalary = workHours >= nextBadge.requiredHours;
           }
         } else {
           if (!currentBadge) {
             nextBadge = salaryBadges[i];
-            canGetSalary = workHours >= salaryBadges[0].requiredHours;
+            hoursToNext = nextBadge.requiredHours - workHours;
+            canGetSalary = workHours >= nextBadge.requiredHours;
           }
           break;
         }
@@ -65,8 +69,8 @@ export function SalaryForm() {
         ...userData,
         currentSalaryBadge: currentBadge,
         nextSalaryBadge: nextBadge,
-        canGetSalary: canGetSalary && nextBadge,
-        hoursToNext: nextBadge ? nextBadge.requiredHours - workHours : 0
+        canGetSalary: canGetSalary,
+        hoursToNext: hoursToNext
       });
       
       setShowConfirmation(false);
@@ -224,7 +228,7 @@ export function SalaryForm() {
                           ? 'text-green-400' 
                           : 'text-red-400'
                       }`}>
-                        {userInfo.canGetSalary ? 'Verilebilir' : `${userInfo.hoursToNext} saat eksik`}
+                        {userInfo.canGetSalary ? 'Verilebilir' : `${Math.max(0, userInfo.hoursToNext)} saat eksik`}
                       </p>
                     </div>
                   </div>
@@ -262,10 +266,10 @@ export function SalaryForm() {
               className={`${
                 userInfo.canGetSalary 
                   ? 'bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800' 
-                  : 'bg-gradient-to-r from-gray-500 to-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-red-500 to-red-600 cursor-not-allowed opacity-60'
               }`}
             >
-              {userInfo.canGetSalary ? 'Maaş Rozeti Ver' : 'Süre Yetersiz'}
+              {userInfo.canGetSalary ? 'Maaş Rozeti Ver' : `Süre Yetersiz (${Math.max(0, userInfo.hoursToNext)} saat eksik)`}
             </Button>
           </motion.div>
         )}
