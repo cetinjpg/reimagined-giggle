@@ -199,7 +199,7 @@ class LocalAuthService {
   private getUsers(): LocalUser[] {
     try {
       const users = localStorage.getItem(this.USERS_KEY);
-        workTime: 1920, // 32 saat - Gümüş Maaş Rozeti için
+      return users ? JSON.parse(users) : [];
     } catch {
       return [];
     }
