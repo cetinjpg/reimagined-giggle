@@ -297,6 +297,12 @@ class LocalAuthService {
     localStorage.removeItem(this.CURRENT_USER_KEY);
   }
 
+  // Test için localStorage'ı tamamen sıfırla
+  resetStorage() {
+    localStorage.clear();
+    this.initializeDefaultUsers();
+  }
+
   async getUserInfo(username: string): Promise<any> {
     this.initializeDefaultUsers();
     
