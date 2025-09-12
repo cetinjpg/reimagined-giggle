@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Bell, Settings, LogOut, User, Moon, Sun } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { authAPI } from '../../services/api';
-import { localAuthService } from '../../services/authService';
 
 export function Header() {
   const { user, theme, setTheme, logout } = useAppStore();
@@ -16,15 +15,6 @@ export function Header() {
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  const resetData = () => {
-    if (confirm('Tüm test verilerini sıfırlamak istediğinizden emin misiniz?')) {
-      localAuthService.resetStorage();
-      authAPI.logout();
-      logout();
-      window.location.reload();
-    }
   };
 
   return (
@@ -72,15 +62,6 @@ export function Header() {
               className="p-2 rounded-lg bg-gray-800/50 border border-gray-600/50 text-gray-400 hover:text-red-400 hover:bg-red-900/20 transition-colors"
             >
               <LogOut className="w-5 h-5" />
-            </button>
-
-            {/* Reset Button - Sadece test için */}
-            <button
-              onClick={resetData}
-              className="p-2 rounded-lg bg-gray-800/50 border border-gray-600/50 text-gray-400 hover:text-yellow-400 hover:bg-yellow-900/20 transition-colors"
-              title="Test verilerini sıfırla"
-            >
-              🔄
             </button>
           </div>
         </div>
