@@ -42,7 +42,6 @@ export function SalaryForm() {
       
       // Maaş rozeti bilgilerini hesapla
       const workHours = userData.workHours || 0;
-      console.log('Debug - workTime:', userData.workTime, 'workHours:', workHours); // Debug için
       let currentBadge = null;
       let nextBadge = null;
       let canGetSalary = false;
@@ -51,19 +50,18 @@ export function SalaryForm() {
       for (let i = 0; i < salaryBadges.length; i++) {
         if (workHours >= salaryBadges[i].requiredHours) {
           currentBadge = salaryBadges[i];
-          if (i < salaryBadges.length - 1) {
-            nextBadge = salaryBadges[i + 1];
-            hoursToNext = nextBadge.requiredHours - workHours;
-            canGetSalary = workHours >= nextBadge.requiredHours;
-          }
         } else {
-          if (!currentBadge) {
-            nextBadge = salaryBadges[i];
-            hoursToNext = nextBadge.requiredHours - workHours;
-            canGetSalary = workHours >= nextBadge.requiredHours;
-          }
+          nextBadge = salaryBadges[i];
+          hoursToNext = nextBadge.requiredHours - workHours;
+          canGetSalary = workHours >= nextBadge.requiredHours;
           break;
         }
+      }
+      
+      // Eğer tüm rozetleri aldıysa
+      if (!nextBadge && currentBadge) {
+        canGetSalary = false;
+        hoursToNext = 0;
       }
 
       setUserInfo({
@@ -203,7 +201,7 @@ export function SalaryForm() {
                     Çalışma Süresi
                   </p>
                   <p className="text-lg font-bold text-gray-400">
-                    {userInfo.workHours || 0} saat
+                    {Math.round((userInfo.workHours || 0) * 100) / 100} saat
                   </p>
                 </div>
               </div>
@@ -229,7 +227,7 @@ export function SalaryForm() {
                           ? 'text-green-400' 
                           : 'text-red-400'
                       }`}>
-                        {userInfo.canGetSalary ? 'Verilebilir' : `${Math.max(0, userInfo.hoursToNext)} saat eksik`}
+                        {userInfo.canGetSalary ? 'Verilebilir' : `${Math.max(0, Math.round(userInfo.hoursToNext * 100) / 100)} saat eksik`}
                       </p>
                     </div>
                   </div>
@@ -270,7 +268,7 @@ export function SalaryForm() {
                   : 'bg-gradient-to-r from-red-500 to-red-600 cursor-not-allowed opacity-60'
               }`}
             >
-              {userInfo.canGetSalary ? 'Maaş Rozeti Ver' : `Süre Yetersiz (${Math.max(0, userInfo.hoursToNext)} saat eksik)`}
+              {userInfo.canGetSalary ? 'Maaş Rozeti Ver' : `Süre Yetersiz (${Math.max(0, Math.round(userInfo.hoursToNext * 100) / 100)} saat eksik)`}
             </Button>
           </motion.div>
         )}
