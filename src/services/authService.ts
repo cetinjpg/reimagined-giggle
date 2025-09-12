@@ -62,7 +62,7 @@ class LocalAuthService {
           habboUsername: 'testuser',
           rank: 'Memur I',
           badge: 'memurlar',
-          workTime: 50,
+          workTime: 960, // 16 saat - Demir'den Gümüş'e geçebilir (32 saat gerekli, 16 saat eksik)
           salary: 100,
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
@@ -77,7 +77,7 @@ class LocalAuthService {
           habboUsername: 'mehmet123',
           rank: 'Stajyer',
           badge: 'memurlar',
-          workTime: 30,
+          workTime: 480, // 8 saat - Bronz alabilir (8 saat gerekli)
           salary: 50,
           avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
@@ -92,7 +92,7 @@ class LocalAuthService {
           habboUsername: 'ayse456',
           rank: 'Güvenlik Memuru II',
           badge: 'guvenlik',
-          workTime: 120,
+          workTime: 1920, // 32 saat - Gümüş'ten Altın'a geçebilir (64 saat gerekli, 32 saat eksik)
           salary: 200,
           avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2ac67a0?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
@@ -107,7 +107,7 @@ class LocalAuthService {
           habboUsername: 'ali789',
           rank: 'Eğitmen II',
           badge: 'egitmen',
-          workTime: 300,
+          workTime: 3840, // 64 saat - Altın'dan Elmas'a geçebilir (128 saat gerekli, 64 saat eksik)
           salary: 350,
           avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
@@ -122,7 +122,7 @@ class LocalAuthService {
           habboUsername: 'fatma321',
           rank: 'Memur III',
           badge: 'memurlar',
-          workTime: 80,
+          workTime: 7680, // 128 saat - Elmas'tan Zümrüt'e geçebilir (256 saat gerekli, 128 saat eksik)
           salary: 120,
         workTime: 2000, // 33+ saat - Zümrüt Maaş Rozeti için
           joinDate: new Date().toISOString(),
@@ -139,7 +139,7 @@ class LocalAuthService {
         habboUsername: 'emre999',
         rank: 'Stajyer',
         badge: 'memurlar',
-        workTime: 400, // 6+ saat - Henüz Bronz'a ulaşmamış
+        workTime: 960, // 16 saat - Demir alabilir (16 saat gerekli)
         salary: 25,
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
@@ -154,7 +154,7 @@ class LocalAuthService {
         habboUsername: 'zeynep555',
         rank: 'Memur II',
         badge: 'memurlar',
-        workTime: 3840, // 64 saat - Elmas Maaş Rozeti için
+        workTime: 15360, // 256 saat - Zümrüt alabilir (256 saat gerekli)
         salary: 90,
         avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2ac67a0?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
