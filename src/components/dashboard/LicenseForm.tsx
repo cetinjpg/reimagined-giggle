@@ -100,7 +100,7 @@ export function LicenseForm() {
                 loading={loading}
                 disabled={loading}
                 icon={Search}
-                className="px-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+                className="px-8 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
               >
                 Kullanıcı Ara
               </Button>

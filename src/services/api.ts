@@ -27,7 +27,12 @@ export const tohAPI = {
   },
 
   async getUserInfo(username: string) {
-    return await localAuthService.getUserInfo(username);
+    try {
+      return await localAuthService.getUserInfo(username);
+    } catch (error) {
+      console.error('getUserInfo error:', error);
+      throw error;
+    }
   },
 
   async getArchive(type: 'mr' | 'badge', date?: string) {

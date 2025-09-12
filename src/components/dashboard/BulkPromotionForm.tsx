@@ -44,12 +44,12 @@ export function BulkPromotionForm() {
     for (const user of users) {
       try {
         // Kullanıcı bilgilerini al
-        const userData = await tohAPI.getUserInfo(user.username);
+        const userData = await tohAPI.getUserInfo(user.username.trim());
         
         // Otomatik terfi (süre kontrolü olmadan)
         const result = calculatePromotion({
           userName: userData.username,
-          workTime: 9999, // Yeterli süre ver
+          workTime: 9999, // Süre kısıtlaması yok - otomatik terfi
           badge: userData.badge,
           rank: userData.currentRank
         });

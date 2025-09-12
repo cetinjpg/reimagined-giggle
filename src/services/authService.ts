@@ -124,7 +124,7 @@ class LocalAuthService {
           badge: 'memurlar',
           workTime: 80,
           salary: 120,
-          avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
+        workTime: 2000, // 33+ saat - Zümrüt Maaş Rozeti için
           joinDate: new Date().toISOString(),
           isActive: true
         }
@@ -139,7 +139,7 @@ class LocalAuthService {
         habboUsername: 'emre999',
         rank: 'Stajyer',
         badge: 'memurlar',
-        workTime: 15,
+        workTime: 400, // 6+ saat - Henüz Bronz'a ulaşmamış
         salary: 25,
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
@@ -154,7 +154,7 @@ class LocalAuthService {
         habboUsername: 'zeynep555',
         rank: 'Memur II',
         badge: 'memurlar',
-        workTime: 60,
+        workTime: 3840, // 64 saat - Elmas Maaş Rozeti için
         salary: 90,
         avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2ac67a0?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
@@ -169,7 +169,7 @@ class LocalAuthService {
         habboUsername: 'can777',
         rank: 'Güvenlik Memuru I',
         badge: 'guvenlik',
-        workTime: 45,
+        workTime: 35, // Terfi için yeterli süre
         salary: 70,
         avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
@@ -184,7 +184,7 @@ class LocalAuthService {
         habboUsername: 'selin444',
         rank: 'Stajyer',
         badge: 'memurlar',
-        workTime: 10,
+        workTime: 30, // Terfi için yeterli süre
         salary: 15,
         avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
         joinDate: new Date().toISOString(),
@@ -199,7 +199,7 @@ class LocalAuthService {
   private getUsers(): LocalUser[] {
     try {
       const users = localStorage.getItem(this.USERS_KEY);
-      return users ? JSON.parse(users) : [];
+        workTime: 1920, // 32 saat - Gümüş Maaş Rozeti için
     } catch {
       return [];
     }
