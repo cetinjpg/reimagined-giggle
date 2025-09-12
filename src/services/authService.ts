@@ -62,7 +62,7 @@ class LocalAuthService {
           habboUsername: 'testuser',
           rank: 'Memur I',
           badge: 'memurlar',
-          workTime: 960, // 16 saat - Demir'den Gümüş'e geçebilir (32 saat gerekli, 16 saat eksik)
+         workTime: 960, // 16 saat - Demir alabilir
           salary: 100,
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
@@ -92,7 +92,7 @@ class LocalAuthService {
           habboUsername: 'ayse456',
           rank: 'Güvenlik Memuru II',
           badge: 'guvenlik',
-          workTime: 1920, // 32 saat - Gümüş'ten Altın'a geçebilir (64 saat gerekli, 32 saat eksik)
+         workTime: 15360, // 256 saat - Zümrüt alabilir
           salary: 200,
           avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2ac67a0?w=300&h=300&fit=crop&crop=face',
           joinDate: new Date().toISOString(),
