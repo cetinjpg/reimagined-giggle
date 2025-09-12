@@ -42,6 +42,7 @@ export function SalaryForm() {
       
       // Maaş rozeti bilgilerini hesapla
       const workHours = userData.workHours || 0;
+      console.log('Debug - workTime:', userData.workTime, 'workHours:', workHours); // Debug için
       let currentBadge = null;
       let nextBadge = null;
       let canGetSalary = false;
