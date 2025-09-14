@@ -18,22 +18,19 @@ import {
   Activity,
   User
 } from 'lucide-react';
-import { mockActiveUsers } from '../../services/graphqlClient';
+import client, { GET_ACTIVE_USERS } from '../../services/graphqlClient';
 import toast from 'react-hot-toast';
 
 interface ActiveUser {
-  id: string;
   username: string;
   avatar: string;
-  status: 'online' | 'away' | 'busy';
-  lastSeen: string;
-  onlineTime: number;
-  rank: string;
-  badge: string;
   motto: string;
-  room?: {
-    name: string;
-    id: string;
+  time: {
+    storedTotal: number;
+    currentSessionTime: number;
+    realTimeTotal: number;
+    isActive: boolean;
+    lastSeen: number;
   };
 }
 
@@ -43,7 +40,6 @@ export function ActiveUsers() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState<ActiveUser | null>(null);
   const [showUserModal, setShowUserModal] = useState(false);
-  const [filterBadge, setFilterBadge] = useState('all');
 
   useEffect(() => {
     loadActiveUsers();
@@ -52,24 +48,59 @@ export function ActiveUsers() {
   const loadActiveUsers = async () => {
     setLoading(true);
     try {
-      // Gerçek uygulamada GraphQL query çalışacak
-      // const { data } = await client.query({ query: GET_ACTIVE_USERS });
+      const { data } = await client.query({ 
+        query: GET_ACTIVE_USERS,
+        fetchPolicy: 'network-only' // Her zaman fresh data al
+      });
       
-      // Mock data kullanıyoruz
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Loading simülasyonu
-      setUsers(mockActiveUsers);
-      toast.success(`${mockActiveUsers.length} aktif kullanıcı yüklendi!`);
+      setUsers(data.activeUsers);
+      toast.success(`${data.activeUsers.length} aktif kullanıcı yüklendi!`);
     } catch (error) {
+      console.error('GraphQL Error:', error);
       toast.error('Aktif kullanıcılar yüklenirken hata oluştu!');
     }
     setLoading(false);
   };
 
+  // Süreyi dakikaya çevir
+  const millisecondsToMinutes = (ms: number) => {
+    return Math.floor(ms / (1000 * 60));
+  };
+
+  // Süreyi saat:dakika formatına çevir
+  const formatTime = (ms: number) => {
+    const minutes = Math.floor(ms / (1000 * 60));
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}s ${remainingMinutes}dk`;
+  };
+
+  // Rütbeyi motto'dan çıkar
+  const extractRank = (motto: string) => {
+    // "TÖH Güvenlik Memuru I BRL" -> "Güvenlik Memuru I"
+    const parts = motto.split(' ');
+    if (parts[0] === 'TÖH' && parts.length > 1) {
+      return parts.slice(1, -1).join(' ') || 'Bilinmiyor';
+    }
+    return motto;
+  };
+
+  // Badge türünü motto'dan çıkar
+  const extractBadge = (motto: string) => {
+    const lowerMotto = motto.toLowerCase();
+    if (lowerMotto.includes('güvenlik')) return 'guvenlik';
+    if (lowerMotto.includes('memur')) return 'memurlar';
+    if (lowerMotto.includes('eğitmen')) return 'egitmen';
+    if (lowerMotto.includes('kurucu')) return 'kurucular';
+    if (lowerMotto.includes('başbakan')) return 'basbakan';
+    if (lowerMotto.includes('yönetici')) return 'yonetim';
+    return 'memurlar';
+  };
+
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.rank.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesBadge = filterBadge === 'all' || user.badge === filterBadge;
-    return matchesSearch && matchesBadge;
+                         user.motto.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesSearch;
   });
 
   const getBadgeColor = (badge: string) => {
@@ -96,21 +127,14 @@ export function ActiveUsers() {
     return icons[badge] || User;
   };
 
-  const getStatusColor = (status: string) => {
-    const colors: Record<string, string> = {
-      online: 'bg-green-500',
-      away: 'bg-yellow-500',
-      busy: 'bg-red-500'
-    };
-    return colors[status] || 'bg-gray-500';
+  const getStatusColor = (isActive: boolean) => {
+    return isActive ? 'bg-green-500' : 'bg-gray-500';
   };
 
   const openUserDetails = (user: ActiveUser) => {
     setSelectedUser(user);
     setShowUserModal(true);
   };
-
-  const uniqueBadges = [...new Set(users.map(user => user.badge))];
 
   return (
     <div className="space-y-6">
@@ -120,7 +144,7 @@ export function ActiveUsers() {
             <Users className="w-7 h-7 mr-3 text-green-500" />
             Aktif Kullanıcılar
             <span className="ml-3 px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-green-300 text-sm font-medium">
-              {users.length} Çevrimiçi
+              {users.filter(u => u.time.isActive).length} Çevrimiçi
             </span>
           </h2>
           
@@ -136,7 +160,7 @@ export function ActiveUsers() {
         </div>
 
         {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="mb-8">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -146,22 +170,6 @@ export function ActiveUsers() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-green-500 focus:ring-green-500/20 focus:outline-none focus:ring-2"
             />
-          </div>
-
-          <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <select
-              value={filterBadge}
-              onChange={(e) => setFilterBadge(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-green-500 focus:ring-green-500/20 focus:outline-none focus:ring-2"
-            >
-              <option value="all">Tüm Rozetler</option>
-              {uniqueBadges.map(badge => (
-                <option key={badge} value={badge}>
-                  {badge.charAt(0).toUpperCase() + badge.slice(1)}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
 
@@ -186,10 +194,12 @@ export function ActiveUsers() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
               {filteredUsers.map((user, index) => {
-                const BadgeIcon = getBadgeIcon(user.badge);
+                const badge = extractBadge(user.motto);
+                const rank = extractRank(user.motto);
+                const BadgeIcon = getBadgeIcon(badge);
                 return (
                   <motion.div
-                    key={user.id}
+                    key={user.username}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -209,30 +219,28 @@ export function ActiveUsers() {
                               (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000000000)}?w=64&h=64&fit=crop&crop=face`;
                             }}
                           />
-                          <div className={`absolute -bottom-1 -right-1 w-5 h-5 ${getStatusColor(user.status)} rounded-full border-2 border-gray-800`}></div>
+                          <div className={`absolute -bottom-1 -right-1 w-5 h-5 ${getStatusColor(user.time.isActive)} rounded-full border-2 border-gray-800`}></div>
                         </div>
                         
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2 mb-1">
                             <h3 className="font-bold text-white truncate">{user.username}</h3>
-                            <div className={`p-1 rounded-lg bg-gradient-to-r ${getBadgeColor(user.badge)}`}>
+                            <div className={`p-1 rounded-lg bg-gradient-to-r ${getBadgeColor(badge)}`}>
                               <BadgeIcon className="w-3 h-3 text-white" />
                             </div>
                           </div>
                           
-                          <p className="text-sm text-gray-400 truncate mb-2">{user.rank}</p>
+                          <p className="text-sm text-gray-400 truncate mb-2">{rank}</p>
                           
                           <div className="flex items-center space-x-4 text-xs text-gray-500">
                             <div className="flex items-center space-x-1">
                               <Clock className="w-3 h-3" />
-                              <span>{user.onlineTime} dk</span>
+                              <span>{millisecondsToMinutes(user.time.currentSessionTime)} dk</span>
                             </div>
-                            {user.room && (
-                              <div className="flex items-center space-x-1">
-                                <MapPin className="w-3 h-3" />
-                                <span className="truncate">{user.room.name}</span>
-                              </div>
-                            )}
+                            <div className="flex items-center space-x-1">
+                              <Activity className="w-3 h-3" />
+                              <span>{user.time.isActive ? 'Aktif' : 'Pasif'}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -252,7 +260,7 @@ export function ActiveUsers() {
           <div className="text-center py-12">
             <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-400">
-              {searchTerm || filterBadge !== 'all' 
+              {searchTerm 
                 ? 'Arama kriterlerine uygun kullanıcı bulunamadı.' 
                 : 'Şu anda aktif kullanıcı bulunmuyor.'
               }
@@ -280,29 +288,26 @@ export function ActiveUsers() {
                     (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000000000)}?w=96&h=96&fit=crop&crop=face`;
                   }}
                 />
-                <div className={`absolute -bottom-2 -right-2 w-6 h-6 ${getStatusColor(selectedUser.status)} rounded-full border-4 border-gray-800`}></div>
+                <div className={`absolute -bottom-2 -right-2 w-6 h-6 ${getStatusColor(selectedUser.time.isActive)} rounded-full border-4 border-gray-800`}></div>
               </div>
               
               <div>
                 <h3 className="text-2xl font-bold text-white mb-2">{selectedUser.username}</h3>
-                <p className="text-gray-400 mb-2">{selectedUser.rank}</p>
+                <p className="text-gray-400 mb-2">{extractRank(selectedUser.motto)}</p>
                 <div className="flex items-center space-x-2">
-                  <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${getBadgeColor(selectedUser.badge)} text-white text-sm font-medium`}>
-                    {selectedUser.badge.charAt(0).toUpperCase() + selectedUser.badge.slice(1)}
+                  <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${getBadgeColor(extractBadge(selectedUser.motto))} text-white text-sm font-medium`}>
+                    {extractBadge(selectedUser.motto).charAt(0).toUpperCase() + extractBadge(selectedUser.motto).slice(1)}
                   </div>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    selectedUser.status === 'online' ? 'bg-green-500/20 text-green-300' :
-                    selectedUser.status === 'away' ? 'bg-yellow-500/20 text-yellow-300' :
-                    'bg-red-500/20 text-red-300'
+                    selectedUser.time.isActive ? 'bg-green-500/20 text-green-300' : 'bg-gray-500/20 text-gray-300'
                   }`}>
-                    {selectedUser.status === 'online' ? 'Çevrimiçi' :
-                     selectedUser.status === 'away' ? 'Uzakta' : 'Meşgul'}
+                    {selectedUser.time.isActive ? 'Aktif' : 'Pasif'}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               <Card className="p-4 bg-gray-800/50">
                 <div className="flex items-center space-x-3 mb-3">
                   <Activity className="w-5 h-5 text-green-500" />
@@ -310,34 +315,19 @@ export function ActiveUsers() {
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Çevrimiçi Süre:</span>
-                    <span className="text-white">{selectedUser.onlineTime} dakika</span>
+                    <span className="text-gray-400">Mevcut Oturum:</span>
+                    <span className="text-white">{formatTime(selectedUser.time.currentSessionTime)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Toplam Süre:</span>
+                    <span className="text-white">{formatTime(selectedUser.time.realTimeTotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Son Görülme:</span>
-                    <span className="text-white">Şimdi</span>
+                    <span className="text-white">{new Date(selectedUser.time.lastSeen).toLocaleString('tr-TR')}</span>
                   </div>
                 </div>
               </Card>
-
-              {selectedUser.room && (
-                <Card className="p-4 bg-gray-800/50">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <MapPin className="w-5 h-5 text-blue-500" />
-                    <h4 className="font-semibold text-white">Konum</h4>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Oda:</span>
-                      <span className="text-white">{selectedUser.room.name}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Oda ID:</span>
-                      <span className="text-white">{selectedUser.room.id}</span>
-                    </div>
-                  </div>
-                </Card>
-              )}
             </div>
 
             <Card className="p-4 bg-gray-800/50">

@@ -3,7 +3,7 @@ import { HttpLink } from '@apollo/client/link/http';
 
 // GraphQL Client Configuration
 const httpLink = new HttpLink({
-  uri: 'https://api.habbo.com/graphql', // Habbo GraphQL endpoint (örnek)
+  uri: 'https://tzdcg0ct-10000.euw.devtunnels.ms/graphql',
   headers: {
     'Content-Type': 'application/json',
   }
@@ -16,20 +16,17 @@ const client = new ApolloClient({
 
 // GraphQL Queries
 export const GET_ACTIVE_USERS = gql`
-  query GetActiveUsers {
+  query ExampleQuery {
     activeUsers {
-      id
-      username
       avatar
-      status
-      lastSeen
-      onlineTime
-      rank
-      badge
+      username
       motto
-      room {
-        name
-        id
+      time {
+        storedTotal
+        currentSessionTime
+        realTimeTotal
+        isActive
+        lastSeen
       }
     }
   }
