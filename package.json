@@ -23,7 +23,6 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.10.0",
-    "caniuse-lite": "^1.0.30001741",
     "date-fns": "^3.6.0",
     "framer-motion": "^10.16.16",
     "graphql": "^16.11.0",
