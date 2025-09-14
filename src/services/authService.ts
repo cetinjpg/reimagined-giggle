@@ -124,7 +124,6 @@ class LocalAuthService {
           badge: 'memurlar',
           workTime: 7680, // 128 saat - Elmas'tan Zümrüt'e geçebilir (256 saat gerekli, 128 saat eksik)
           salary: 120,
-        workTime: 2000, // 33+ saat - Zümrüt Maaş Rozeti için
           joinDate: new Date().toISOString(),
           isActive: true
         }

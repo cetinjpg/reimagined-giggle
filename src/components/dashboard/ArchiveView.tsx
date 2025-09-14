@@ -78,8 +78,7 @@ export function ArchiveView() {
               disabled={loading}
               icon={Search}
               size="lg"
-              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
-              className="w-full"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 w-full"
             >
               Arşiv Ara
             </Button>
