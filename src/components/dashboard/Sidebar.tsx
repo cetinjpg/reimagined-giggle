@@ -25,6 +25,7 @@ const menuItems = [
   { id: 'education', label: 'Eğitim Yönetimi', icon: GraduationCap },
   { id: 'transfer-in', label: 'Transfer Gelen', icon: UserPlus },
   { id: 'transfer-out', label: 'Transfer Giden', icon: UserMinus },
+  { id: 'active-users', label: 'Aktif Kullanıcılar', icon: Users },
   { id: 'archive', label: 'Arşiv Görüntüle', icon: Archive }
 ];
 

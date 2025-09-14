@@ -10,6 +10,7 @@ import { LicenseForm } from './LicenseForm';
 import { EducationForm } from './EducationForm';
 import { TransferInForm } from './TransferInForm';
 import { TransferOutForm } from './TransferOutForm';
+import { ActiveUsers } from './ActiveUsers';
 import { ArchiveView } from './ArchiveView';
 import { useAppStore } from '../../store/useAppStore';
 
@@ -34,6 +35,8 @@ export function Dashboard() {
         return <TransferInForm />;
       case 'transfer-out':
         return <TransferOutForm />;
+      case 'active-users':
+        return <ActiveUsers />;
       case 'archive':
         return <ArchiveView />;
       default:
