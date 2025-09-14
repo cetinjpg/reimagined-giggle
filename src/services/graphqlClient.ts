@@ -1,12 +1,17 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { HttpLink } from '@apollo/client/link/http';
 
 // GraphQL Client Configuration
-const client = new ApolloClient({
+const httpLink = new HttpLink({
   uri: 'https://api.habbo.com/graphql', // Habbo GraphQL endpoint (örnek)
-  cache: new InMemoryCache(),
   headers: {
     'Content-Type': 'application/json',
   }
+});
+
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
 });
 
 // GraphQL Queries
